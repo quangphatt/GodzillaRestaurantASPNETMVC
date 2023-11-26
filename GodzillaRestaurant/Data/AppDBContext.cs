@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using GodzillaRestaurant.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace GodzillaRestaurant.Data;
 
-public class AppDBContext : IdentityDbContext<IdentityUser>
+public class AppDBContext : IdentityDbContext<AppUser>
 {
     public AppDBContext(DbContextOptions<AppDBContext> options)
         : base(options)
