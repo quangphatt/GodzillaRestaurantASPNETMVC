@@ -13,6 +13,166 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\about-bg.jpg",
+      "PackagePath": "staticwebassets\\img\\about-bg.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\about.jpg",
+      "PackagePath": "staticwebassets\\img\\about.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\apple-touch-icon.png",
+      "PackagePath": "staticwebassets\\img\\apple-touch-icon.png"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\chefs\\chefs-1.jpg",
+      "PackagePath": "staticwebassets\\img\\chefs\\chefs-1.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\chefs\\chefs-2.jpg",
+      "PackagePath": "staticwebassets\\img\\chefs\\chefs-2.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\chefs\\chefs-3.jpg",
+      "PackagePath": "staticwebassets\\img\\chefs\\chefs-3.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\event-birthday.jpg",
+      "PackagePath": "staticwebassets\\img\\event-birthday.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\event-custom.jpg",
+      "PackagePath": "staticwebassets\\img\\event-custom.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\event-private.jpg",
+      "PackagePath": "staticwebassets\\img\\event-private.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\event-wedding.jpg",
+      "PackagePath": "staticwebassets\\img\\event-wedding.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\events-bg.jpg",
+      "PackagePath": "staticwebassets\\img\\events-bg.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\favicon.png",
+      "PackagePath": "staticwebassets\\img\\favicon.png"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\gallery\\gallery-1.jpg",
+      "PackagePath": "staticwebassets\\img\\gallery\\gallery-1.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\gallery\\gallery-2.jpg",
+      "PackagePath": "staticwebassets\\img\\gallery\\gallery-2.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\gallery\\gallery-3.jpg",
+      "PackagePath": "staticwebassets\\img\\gallery\\gallery-3.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\gallery\\gallery-4.jpg",
+      "PackagePath": "staticwebassets\\img\\gallery\\gallery-4.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\gallery\\gallery-5.jpg",
+      "PackagePath": "staticwebassets\\img\\gallery\\gallery-5.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\gallery\\gallery-6.jpg",
+      "PackagePath": "staticwebassets\\img\\gallery\\gallery-6.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\gallery\\gallery-7.jpg",
+      "PackagePath": "staticwebassets\\img\\gallery\\gallery-7.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\gallery\\gallery-8.jpg",
+      "PackagePath": "staticwebassets\\img\\gallery\\gallery-8.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\hero-bg.jpg",
+      "PackagePath": "staticwebassets\\img\\hero-bg.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\menu\\bread-barrel.jpg",
+      "PackagePath": "staticwebassets\\img\\menu\\bread-barrel.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\menu\\caesar.jpg",
+      "PackagePath": "staticwebassets\\img\\menu\\caesar.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\menu\\cake.jpg",
+      "PackagePath": "staticwebassets\\img\\menu\\cake.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\menu\\greek-salad.jpg",
+      "PackagePath": "staticwebassets\\img\\menu\\greek-salad.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\menu\\lobster-bisque.jpg",
+      "PackagePath": "staticwebassets\\img\\menu\\lobster-bisque.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\menu\\lobster-roll.jpg",
+      "PackagePath": "staticwebassets\\img\\menu\\lobster-roll.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\menu\\mozzarella.jpg",
+      "PackagePath": "staticwebassets\\img\\menu\\mozzarella.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\menu\\spinach-salad.jpg",
+      "PackagePath": "staticwebassets\\img\\menu\\spinach-salad.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\menu\\tuscan-grilled.jpg",
+      "PackagePath": "staticwebassets\\img\\menu\\tuscan-grilled.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\specials-1.png",
+      "PackagePath": "staticwebassets\\img\\specials-1.png"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\specials-2.png",
+      "PackagePath": "staticwebassets\\img\\specials-2.png"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\specials-3.png",
+      "PackagePath": "staticwebassets\\img\\specials-3.png"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\specials-4.png",
+      "PackagePath": "staticwebassets\\img\\specials-4.png"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\specials-5.png",
+      "PackagePath": "staticwebassets\\img\\specials-5.png"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\testimonials\\testimonials-1.jpg",
+      "PackagePath": "staticwebassets\\img\\testimonials\\testimonials-1.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\testimonials\\testimonials-2.jpg",
+      "PackagePath": "staticwebassets\\img\\testimonials\\testimonials-2.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\testimonials\\testimonials-3.jpg",
+      "PackagePath": "staticwebassets\\img\\testimonials\\testimonials-3.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\testimonials\\testimonials-4.jpg",
+      "PackagePath": "staticwebassets\\img\\testimonials\\testimonials-4.jpg"
+    },
+    {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\testimonials\\testimonials-5.jpg",
+      "PackagePath": "staticwebassets\\img\\testimonials\\testimonials-5.jpg"
+    },
+    {
       "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
