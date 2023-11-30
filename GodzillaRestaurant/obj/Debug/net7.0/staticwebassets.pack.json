@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets\\img\\event-private.jpg"
     },
     {
+      "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\event-wedding.jpg",
+      "PackagePath": "staticwebassets\\img\\event-wedding.jpg"
+    },
+    {
       "Id": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\events-bg.jpg",
       "PackagePath": "staticwebassets\\img\\events-bg.jpg"
     },

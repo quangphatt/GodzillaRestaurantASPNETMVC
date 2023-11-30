@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CaRK0hVvHayEuh5qITnfUzOfAZidP9ycEKN7H8LJVEA=",
+  "Hash": "4DPi79ii4vBdj9Dxz642RWesNkLXplNMV7nni+M5cGU=",
   "Source": "GodzillaRestaurant",
   "BasePath": "_content/GodzillaRestaurant",
   "Mode": "Default",
@@ -1273,6 +1273,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\events-bg.jpg"
+    },
+    {
+      "Identity": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\event-wedding.jpg",
+      "SourceId": "GodzillaRestaurant",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\",
+      "BasePath": "_content/GodzillaRestaurant",
+      "RelativePath": "img/event-wedding.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\event-wedding.jpg"
     },
     {
       "Identity": "E:\\CourseProject\\ASP\\GodzillaRestaurant\\GodzillaRestaurant\\wwwroot\\img\\favicon.png",
