@@ -1,4 +1,5 @@
 ﻿using GodzillaRestaurant.Models;
+using GodzillaRestaurant.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,11 +12,13 @@ namespace GodzillaRestaurant.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IChefService _chefService;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager)
+        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, IChefService chefService)
         {
             _logger = logger;
             this._userManager = userManager;
+            this._chefService = chefService;
         }
 
         public IActionResult Index()
@@ -24,6 +27,7 @@ namespace GodzillaRestaurant.Controllers
             {
                 return Redirect("Admin");
             }
+            ViewBag.Chefs = this._chefService.GetAllChefs();
             return View();
         }
 
