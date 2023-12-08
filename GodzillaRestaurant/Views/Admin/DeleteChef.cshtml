@@ -1,0 +1,19 @@
+﻿@model GodzillaRestaurant.Models.Chef
+@{
+    ViewData["Title"] = "Delete Chef";
+}
+
+<div class="row justify-content-center p-3">
+    <div class="col-md-4 form-card">
+        <form asp-action="DeleteChef" class="app-form" enctype="multipart/form-data">
+            <h5 class="text-center">Are you sure you want to delete this chef?</h5>
+            <p><strong>Name: </strong>@Model.Name</p>
+            <p><strong>Image: </strong>@Model.Image</p>
+            <p><strong>Position: </strong>@Model.Position</p>
+            <p><strong>Instagram: </strong>@Model.Instagram</p>
+            <input type="hidden" asp-for="ChefId" />
+            <a asp-action="Chefs" class="btn btn-secondary">Cancel</a>
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </form>
+    </div>
+</div>

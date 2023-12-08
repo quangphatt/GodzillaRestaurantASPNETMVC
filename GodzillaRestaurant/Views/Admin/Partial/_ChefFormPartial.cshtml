@@ -1,0 +1,28 @@
+﻿@model GodzillaRestaurant.Models.Chef
+
+<div>
+    <input type="hidden" asp-for="ChefId" />
+    <div class="form-floating mb-3">
+        <input asp-for="Name" class="form-control" required placeholder="Ex: John,..." />
+        <label asp-for="Name" class="form-label">Chef Name</label>
+        <span asp-validation-for="Name" class="text-danger small"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Position" class="form-control" required placeholder="Chef's Position" />
+        <label asp-for="Position" class="form-label">Position</label>
+        <span asp-validation-for="Position" class="text-danger small"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Image" class="form-control" placeholder="Chef's Image" />
+        <label asp-for="Image" class="form-label">Image Link</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Instagram" class="form-control" placeholder="Chef's Instagram" />
+        <label asp-for="Instagram" class="form-label">Instagram Username</label>
+    </div>
+</div>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

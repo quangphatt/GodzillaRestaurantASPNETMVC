@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using GodzillaRestaurant.Data;
 using GodzillaRestaurant.Models;
+using GodzillaRestaurant.Services;
+using GodzillaRestaurant.DataAccessLayer;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppDBContextConnection") ?? throw new InvalidOperationException("Connection string 'AppDBContextConnection' not found.");
@@ -18,6 +20,12 @@ builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Password.RequireUppercase = false;
 });
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.AccessDeniedPath = "/";
+    options.LoginPath = "/Login";
+});
+builder.Services.AddScoped<IChefService, ChefDAL>();
 
 var app = builder.Build();
 

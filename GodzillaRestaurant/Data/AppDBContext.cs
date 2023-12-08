@@ -15,4 +15,6 @@ public class AppDBContext : IdentityDbContext<AppUser>
     {
         base.OnModelCreating(builder);
     }
+
+    public virtual DbSet<Chef> Chef { get; set; }
 }
