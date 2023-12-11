@@ -1802,6 +1802,7 @@ section {
 
 .table-img {
     max-height: 100px;
+    max-width: 100px;
 }
 
 .table-action-col {

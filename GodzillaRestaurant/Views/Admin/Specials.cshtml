@@ -1,0 +1,55 @@
+﻿@model IEnumerable<GodzillaRestaurant.Models.Special>
+@{
+    ViewData["Title"] = "Specials";
+}
+
+<div class="p-3">
+    <h3 class="text-center">List of Specials</h3>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Introduction</th>
+                <th>Description</th>
+                <th>Detail</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var special in Model)
+            {
+                <tr>
+                    <td>@special.SpecialId</td>
+                    <td>@special.Name</td>
+                    <td>
+                        @if (special.Image != null)
+                        {
+                            <img src="@special.Image" class="table-img" />
+                        }
+                    </td>
+                    <td>@special.Introduction</td>
+                    <td>
+                        @if (special.Description != null)
+                        {
+                            <span>@special.Description</span>
+                        }
+                    </td>
+                    <td>
+                        @if (special.Detail != null)
+                        {
+                            <span>@special.Detail</span>
+                        }
+                    </td>
+                    <td class="table-action-col">
+                        <a asp-action="EditSpecial" asp-route-id="@special.SpecialId" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a asp-action="DeleteSpecial" asp-route-id="@special.SpecialId" class="btn btn-danger btn-sm"><i class="fa-solid fa-xmark"></i></a>
+                    </td>
+                </tr>
+            }
+            <tr><td colspan="7"><strong>Total: @Model.Count()</strong></td></tr>
+        </tbody>
+    </table>
+    <button onclick="location.href='@Url.Action("CreateSpecial", "Admin")'" class="btn btn-primary">Create A Special</button>
+</div>

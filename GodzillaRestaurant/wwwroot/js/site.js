@@ -268,4 +268,15 @@
             mirror: false
         })
     });
+
+    // Special first selection
+    window.addEventListener('load', () => {
+        // Name
+        let firstSpecialName = select('#list-special-name li:first-child a');
+        firstSpecialName.classList.add("active", "show");
+
+        // Content
+        let firstSpecialContent = select('#list-special-content .tab-pane:first-child');
+        firstSpecialContent.classList.add("active", "show");
+    });
 })()

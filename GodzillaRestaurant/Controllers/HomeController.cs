@@ -13,12 +13,14 @@ namespace GodzillaRestaurant.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly UserManager<AppUser> _userManager;
         private readonly IChefService _chefService;
+        private readonly ISpecialService _specialService;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, IChefService chefService)
+        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, IChefService chefService, ISpecialService specialService)
         {
             _logger = logger;
             this._userManager = userManager;
             this._chefService = chefService;
+            this._specialService = specialService;
         }
 
         public IActionResult Index()
@@ -28,6 +30,7 @@ namespace GodzillaRestaurant.Controllers
                 return Redirect("Admin");
             }
             ViewBag.Chefs = this._chefService.GetAllChefs();
+            ViewBag.Specials = this._specialService.GetAllSpecials();
             return View();
         }
 

@@ -9,10 +9,12 @@ namespace GodzillaRestaurant.Controllers
     public class AdminController : Controller
     {
         private readonly IChefService _chefService;
+        private readonly ISpecialService _specialService;
 
-        public AdminController(IChefService chefService)
+        public AdminController(IChefService chefService, ISpecialService specialService)
         {
             _chefService = chefService;
+            _specialService = specialService;
         }
 
         public IActionResult Index()
@@ -71,6 +73,59 @@ namespace GodzillaRestaurant.Controllers
         {
             _chefService.DeleteChef(chef.ChefId);
             return RedirectToAction("Chefs");
+        }
+
+        // Manage Special
+        public IActionResult Specials()
+        {
+            return View(_specialService.GetAllSpecials());
+        }
+
+        [HttpGet]
+        public IActionResult CreateSpecial ()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateSpecial(Special special)
+        {
+            _specialService.AddSpecial(special);
+            return RedirectToAction("Specials");
+        }
+
+        [HttpGet]
+        public IActionResult EditSpecial(int id)
+        {
+            Special special = _specialService.GetSpecial(id);
+            if (special == null) return RedirectToAction("Specials");
+            else return View(special);
+        }
+
+        [HttpPost]
+        public IActionResult EditSpecial(Special special)
+        {
+            if (ModelState.IsValid)
+            {
+                _specialService.UpdateSpecial(special);
+                return RedirectToAction("Specials");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult DeleteSpecial(int id)
+        {
+            Special special = _specialService.GetSpecial(id);
+            if (special == null) return RedirectToAction("Specials");
+            else return View(special);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteSpecial(Special special)
+        {
+            _specialService.DeleteSpecial(special.SpecialId);
+            return RedirectToAction("Specials");
         }
     }
 }

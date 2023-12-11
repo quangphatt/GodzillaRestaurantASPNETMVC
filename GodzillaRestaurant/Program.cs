@@ -26,6 +26,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LoginPath = "/Login";
 });
 builder.Services.AddScoped<IChefService, ChefDAL>();
+builder.Services.AddScoped<ISpecialService, SpecialDAL>();
 
 var app = builder.Build();
 
