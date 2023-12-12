@@ -18,4 +18,5 @@ public class AppDBContext : IdentityDbContext<AppUser>
 
     public virtual DbSet<Chef> Chef { get; set; }
     public virtual DbSet<Special> Special { get; set; }
+    public virtual DbSet<Event> Event { get; set; }
 }
