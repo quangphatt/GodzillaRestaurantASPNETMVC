@@ -1,0 +1,25 @@
+﻿@model GodzillaRestaurant.Models.Event
+@{
+    ViewData["Title"] = "Delete Event";
+}
+
+<div class="row justify-content-center p-3">
+    <div class="col-md-4 form-card">
+        <form asp-action="DeleteEvent" class="app-form" enctype="multipart/form-data">
+            <h5 class="text-center">Are you sure you want to delete this event?</h5>
+            <p><strong>Name: </strong>@Model.Name</p>
+            <p><strong>Price: </strong>@Model.Price</p>
+            <p><strong>Image:</strong></p>
+            @if (Model.Image != null)
+            {
+                <img src="@Model.Image" class="table-img mb-3" />
+            }
+            <p><strong>Introduction: </strong>@Model.Introduction</p>
+            <p><strong>Description: </strong>@Model.Description</p>
+            <p><strong>Outro: </strong>@Model.Outro</p>
+            <input type="hidden" asp-for="EventId" />
+            <a asp-action="Events" class="btn btn-secondary">Cancel</a>
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </form>
+    </div>
+</div>

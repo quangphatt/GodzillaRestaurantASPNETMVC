@@ -10,11 +10,13 @@ namespace GodzillaRestaurant.Controllers
     {
         private readonly IChefService _chefService;
         private readonly ISpecialService _specialService;
+        private readonly IEventService _eventService;
 
-        public AdminController(IChefService chefService, ISpecialService specialService)
+        public AdminController(IChefService chefService, ISpecialService specialService, IEventService eventService)
         {
             _chefService = chefService;
             _specialService = specialService;
+            _eventService = eventService;
         }
 
         public IActionResult Index()
@@ -22,7 +24,7 @@ namespace GodzillaRestaurant.Controllers
             return View();
         }
 
-        //Manage Chef
+        // Manage Chefs
         public IActionResult Chefs()
         {
             return View(_chefService.GetAllChefs());
@@ -75,7 +77,7 @@ namespace GodzillaRestaurant.Controllers
             return RedirectToAction("Chefs");
         }
 
-        // Manage Special
+        // Manage Specials
         public IActionResult Specials()
         {
             return View(_specialService.GetAllSpecials());
@@ -126,6 +128,59 @@ namespace GodzillaRestaurant.Controllers
         {
             _specialService.DeleteSpecial(special.SpecialId);
             return RedirectToAction("Specials");
+        }
+
+        // Manage Events
+        public IActionResult Events()
+        {
+            return View(_eventService.GetAllEvents());
+        }
+
+        [HttpGet]
+        public IActionResult CreateEvent()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateEvent(Event _event)
+        {
+            _eventService.AddEvent(_event);
+            return RedirectToAction("Events");
+        }
+
+        [HttpGet]
+        public IActionResult EditEvent(int id)
+        {
+            Event _event = _eventService.GetEvent(id);
+            if (_event == null) return RedirectToAction("Events");
+            else return View(_event);
+        }
+
+        [HttpPost]
+        public IActionResult EditEvent(Event _event)
+        {
+            if (ModelState.IsValid)
+            {
+                _eventService.UpdateEvent(_event);
+                return RedirectToAction("Events");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult DeleteEvent(int id)
+        {
+            Event _event = _eventService.GetEvent(id);
+            if (_event == null) return RedirectToAction("Events");
+            else return View(_event);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteEvent(Event _event)
+        {
+            _eventService.DeleteEvent(_event.EventId);
+            return RedirectToAction("Events");
         }
     }
 }
