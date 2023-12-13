@@ -1,0 +1,39 @@
+﻿@model GodzillaRestaurant.Models.Event
+
+<div>
+    <input type="hidden" asp-for="EventId" />
+    <div class="form-floating mb-3">
+        <input asp-for="Name" class="form-control" required placeholder="Name" />
+        <label asp-for="Name" class="form-label">Event Name</label>
+        <span asp-validation-for="Name" class="text-danger small"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Price" class="form-control" required placeholder="Price" />
+        <label asp-for="Price" class="form-label">Price</label>
+        <span asp-validation-for="Price" class="text-danger small"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Image" class="form-control" required placeholder="Image" />
+        <label asp-for="Image" class="form-label">Image Link</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Introduction" class="form-control" required placeholder="Introduction" />
+        <label asp-for="Introduction" class="form-label">Introduction</label>
+        <span asp-validation-for="Introduction" class="text-danger small"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Description" class="form-control" required placeholder="Description" />
+        <label asp-for="Description" class="form-label">Description</label>
+        <span asp-validation-for="Description" class="text-danger small"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Outro" class="form-control" required placeholder="Outro" />
+        <label asp-for="Outro" class="form-label">Outro</label>
+        <span asp-validation-for="Outro" class="text-danger small"></span>
+    </div>
+</div>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

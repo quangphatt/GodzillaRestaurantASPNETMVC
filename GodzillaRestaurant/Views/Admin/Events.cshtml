@@ -1,0 +1,56 @@
+﻿@model IEnumerable<GodzillaRestaurant.Models.Event>
+@{
+    ViewData["Title"] = "Events";
+}
+
+<div class="p-3">
+    <h3 class="text-center">List of Events</h3>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Introduction</th>
+                <th>Description</th>
+                <th>Outro</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var _event in Model)
+            {
+                <tr>
+                    <td>@_event.EventId</td>
+                    <td>@_event.Name</td>
+                    <td>@_event.Price</td>
+                    <td>
+                        @if (_event.Image != null)
+                        {
+                            <img src="@_event.Image" class="table-img" />
+                        }
+                    </td>
+                    <td>@_event.Introduction</td>
+                    <td>                    
+                        @if (!string.IsNullOrWhiteSpace(_event.Description))
+                        {
+                            var Descriptions = _event.Description.Split("\\n");
+                            foreach (var Description in Descriptions)
+                            {
+                                <p>@Description</p>
+                            }
+                        }
+                    </td>
+                    <td>@_event.Outro</td>
+                    <td class="table-action-col">
+                        <a asp-action="EditEvent" asp-route-id="@_event.EventId" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a asp-action="DeleteEvent" asp-route-id="@_event.EventId" class="btn btn-danger btn-sm"><i class="fa-solid fa-xmark"></i></a>
+                    </td>
+                </tr>
+            }
+            <tr><td colspan="8"><strong>Total: @Model.Count() Events</strong></td></tr>
+        </tbody>
+    </table>
+    <button onclick="location.href='@Url.Action("CreateEvent", "Admin")'" class="btn btn-primary">Create A Event</button>
+</div>

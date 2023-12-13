@@ -27,6 +27,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 builder.Services.AddScoped<IChefService, ChefDAL>();
 builder.Services.AddScoped<ISpecialService, SpecialDAL>();
+builder.Services.AddScoped<IEventService, EventDAL>();
 
 var app = builder.Build();
 
