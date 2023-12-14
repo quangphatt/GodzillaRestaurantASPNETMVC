@@ -15,14 +15,16 @@ namespace GodzillaRestaurant.Controllers
         private readonly IChefService _chefService;
         private readonly ISpecialService _specialService;
         private readonly IEventService _eventService;
+        private readonly ITestimonialService _testimonialService;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, IChefService chefService, ISpecialService specialService, IEventService eventService)
+        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testialService)
         {
             _logger = logger;
             this._userManager = userManager;
             this._chefService = chefService;
             this._specialService = specialService;
             this._eventService = eventService;
+            this._testimonialService = testialService;
         }
 
         public IActionResult Index()
@@ -34,6 +36,7 @@ namespace GodzillaRestaurant.Controllers
             ViewBag.Chefs = this._chefService.GetAllChefs();
             ViewBag.Specials = this._specialService.GetAllSpecials();
             ViewBag.Events = this._eventService.GetAllEvents();
+            ViewBag.Testimonials = this._testimonialService.GetAllTestimonials();
             return View();
         }
 
