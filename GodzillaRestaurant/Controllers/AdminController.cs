@@ -11,12 +11,14 @@ namespace GodzillaRestaurant.Controllers
         private readonly IChefService _chefService;
         private readonly ISpecialService _specialService;
         private readonly IEventService _eventService;
+        private readonly ITestimonialService _testimonialService;
 
-        public AdminController(IChefService chefService, ISpecialService specialService, IEventService eventService)
+        public AdminController(IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testimonialService)
         {
             _chefService = chefService;
             _specialService = specialService;
             _eventService = eventService;
+            _testimonialService = testimonialService;
         }
 
         public IActionResult Index()
@@ -181,6 +183,59 @@ namespace GodzillaRestaurant.Controllers
         {
             _eventService.DeleteEvent(_event.EventId);
             return RedirectToAction("Events");
+        }
+
+        // Manage Testimonials
+        public IActionResult Testimonials()
+        {
+            return View(_testimonialService.GetAllTestimonials());
+        }
+
+        [HttpGet]
+        public IActionResult CreateTestimonial()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateTestimonial(Testimonial testimonial)
+        {
+            _testimonialService.AddTestimonial(testimonial);
+            return RedirectToAction("Testimonials");
+        }
+
+        [HttpGet]
+        public IActionResult EditTestimonial(int id)
+        {
+            Testimonial testimonial = _testimonialService.GetTestimonial(id);
+            if (testimonial == null) return RedirectToAction("Testimonials");
+            else return View(testimonial);
+        }
+
+        [HttpPost]
+        public IActionResult EditTestimonial(Testimonial testimonial)
+        {
+            if (ModelState.IsValid)
+            {
+                _testimonialService.UpdateTestimonial(testimonial);
+                return RedirectToAction("Testimonials");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult DeleteTestimonial(int id)
+        {
+            Testimonial testimonial = _testimonialService.GetTestimonial(id);
+            if (testimonial == null) return RedirectToAction("Testimonials");
+            else return View(testimonial);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteTestimonial(Testimonial testimonial)
+        {
+            _testimonialService.DeleteTestimonial(testimonial.TestimonialId);
+            return RedirectToAction("Testimonials");
         }
     }
 }

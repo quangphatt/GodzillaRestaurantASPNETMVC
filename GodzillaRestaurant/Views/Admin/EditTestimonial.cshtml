@@ -1,0 +1,17 @@
+﻿@model GodzillaRestaurant.Models.Testimonial
+@{
+    ViewData["Title"] = "Edit Testimonial";
+}
+
+<div class="row justify-content-center p-3">
+    <div class="col-md-4 form-card">
+        <form asp-action="EditTestimonial" class="app-form" enctype="multipart/form-data">
+            <h3 class="text-center">Edit Testimonial</h3>
+            <partial name="Partial/_TestimonialFormPartial.cshtml" />
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+                <a asp-action="Testimonials" class="btn btn-secondary">Back to list</a>
+            </div>
+        </form>
+    </div>
+</div>
