@@ -1,0 +1,36 @@
+﻿@model IEnumerable<GodzillaRestaurant.Models.GalleryItem>
+@{
+    ViewData["Title"] = "Gallery";
+}
+
+<div class="p-3">
+    <h3 class="text-center">List of Gallery Items</h3>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var galleryItem in Model)
+            {
+                <tr>
+                    <td>@galleryItem.GalleryItemId</td>
+                    <td>
+                        @if (galleryItem.Image != null)
+                        {
+                            <img src="@galleryItem.Image" class="table-img" />
+                        }
+                    </td>
+                    <td class="table-action-col">
+                        <a asp-action="DeleteGalleryItem" asp-route-id="@galleryItem.GalleryItemId" class="btn btn-danger btn-sm"><i class="fa-solid fa-xmark"></i></a>
+                    </td>
+                </tr>
+            }
+            <tr><td colspan="6"><strong>Total: @Model.Count() Items</strong></td></tr>
+        </tbody>
+    </table>
+    <button onclick="location.href='@Url.Action("CreateGalleryItem", "Admin")'" class="btn btn-primary">Create A Item</button>
+</div>

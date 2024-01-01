@@ -1,0 +1,17 @@
+﻿@model GodzillaRestaurant.Models.GalleryItem
+@{
+    ViewData["Title"] = "Create Gallery Item";
+}
+
+<div class="row justify-content-center p-3">
+    <div class="col-md-4 form-card">
+        <form asp-action="CreateGalleryItem" class="app-form" enctype="multipart/form-data">
+            <h3 class="text-center">Create A Gallery Item</h3>
+            <partial name="Partial/_GalleryFormPartial.cshtml" />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Gallery" class="btn btn-secondary">Back to list</a>
+            </div>
+        </form>
+    </div>
+</div>
