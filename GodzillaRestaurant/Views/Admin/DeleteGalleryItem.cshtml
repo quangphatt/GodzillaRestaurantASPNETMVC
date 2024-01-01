@@ -1,0 +1,21 @@
+﻿@model GodzillaRestaurant.Models.GalleryItem
+@{
+    ViewData["Title"] = "Delete Gallery Item";
+}
+
+<div class="row justify-content-center p-3">
+    <div class="col-md-4 form-card">
+        <form asp-action="DeleteGalleryItem" class="app-form" enctype="multipart/form-data">
+            <h5 class="text-center">Are you sure you want to delete this gallery item?</h5>
+            <p><strong>Image:</strong></p>
+            @if (Model.Image != null)
+            {
+                <img src="@Model.Image" class="table-img mb-3" />
+            }
+            <p></p>
+            <input type="hidden" asp-for="GalleryItemId" />
+            <a asp-action="Gallery" class="btn btn-secondary">Cancel</a>
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </form>
+    </div>
+</div>

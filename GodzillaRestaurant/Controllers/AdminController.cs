@@ -12,13 +12,15 @@ namespace GodzillaRestaurant.Controllers
         private readonly ISpecialService _specialService;
         private readonly IEventService _eventService;
         private readonly ITestimonialService _testimonialService;
+        private readonly IGalleryService _galleryService;
 
-        public AdminController(IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testimonialService)
+        public AdminController(IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testimonialService, IGalleryService galleryService)
         {
             _chefService = chefService;
             _specialService = specialService;
             _eventService = eventService;
             _testimonialService = testimonialService;
+            _galleryService = galleryService;
         }
 
         public IActionResult Index()
@@ -86,7 +88,7 @@ namespace GodzillaRestaurant.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateSpecial ()
+        public IActionResult CreateSpecial()
         {
             return View();
         }
@@ -236,6 +238,40 @@ namespace GodzillaRestaurant.Controllers
         {
             _testimonialService.DeleteTestimonial(testimonial.TestimonialId);
             return RedirectToAction("Testimonials");
+        }
+
+        // Manage Gallery
+        public IActionResult Gallery()
+        {
+            return View(_galleryService.GetAllGallery());
+        }
+
+        [HttpGet]
+        public IActionResult CreateGalleryItem()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateGalleryItem(GalleryItem galleryItem)
+        {
+            _galleryService.AddGalleryItem(galleryItem);
+            return RedirectToAction("Gallery");
+        }
+
+        [HttpGet]
+        public IActionResult DeleteGalleryItem(int id)
+        {
+            GalleryItem galleryItem = _galleryService.GetGalleryItem(id);
+            if (galleryItem == null) return RedirectToAction("Gallery");
+            else return View(galleryItem);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteGalleryItem(GalleryItem galleryItem)
+        {
+            _galleryService.DeleteGalleryItem(galleryItem.GalleryItemId);
+            return RedirectToAction("Gallery");
         }
     }
 }
