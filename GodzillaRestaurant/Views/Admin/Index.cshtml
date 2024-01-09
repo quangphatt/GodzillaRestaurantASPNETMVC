@@ -2,8 +2,8 @@
     ViewData["Title"] = "Admin";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Admin</h1>
+<div id="admin-view">
+    <partial name="Partial/_HeaderPartial.cshtml" />
     <div class="d-flex flex-column">
         <a asp-action="Chefs">Manage Chefs</a>
         <a asp-action="Specials">Manage Specials</a>
@@ -11,5 +11,4 @@
         <a asp-action="Testimonials">Manage Testimonials</a>
         <a asp-action="Gallery">Manage Gallery</a>
     </div>
-    
 </div>
