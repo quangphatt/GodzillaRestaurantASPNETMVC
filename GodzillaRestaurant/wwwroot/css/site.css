@@ -1786,6 +1786,13 @@ section {
     min-height: calc(100vh - 383px);
 }
 
+    .app-content header {
+        position:fixed;
+        top: 0;
+        width: 100%;
+        z-index: 4;
+    }
+
 .auth-layout, .app-form {
     color: #000000;
 }
