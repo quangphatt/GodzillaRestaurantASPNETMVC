@@ -13,6 +13,7 @@ namespace GodzillaRestaurant.Controllers
         private readonly IEventService _eventService;
         private readonly ITestimonialService _testimonialService;
         private readonly IGalleryService _galleryService;
+        private readonly string[] ManageItem = ["Chefs", "Specials", "Events", "Testimonials", "Gallery"];
 
         public AdminController(IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testimonialService, IGalleryService galleryService)
         {
@@ -25,6 +26,7 @@ namespace GodzillaRestaurant.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.ManageItem = ManageItem;
             return View();
         }
 

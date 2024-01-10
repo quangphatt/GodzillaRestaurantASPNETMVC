@@ -4,11 +4,12 @@
 
 <div id="admin-view">
     <partial name="Partial/_HeaderPartial.cshtml" />
-    <div class="d-flex flex-column">
-        <a asp-action="Chefs">Manage Chefs</a>
-        <a asp-action="Specials">Manage Specials</a>
-        <a asp-action="Events">Manage Events</a>
-        <a asp-action="Testimonials">Manage Testimonials</a>
-        <a asp-action="Gallery">Manage Gallery</a>
+    <div class="row mx-0">
+        @foreach(string item in ViewBag.ManageItem)
+        {
+            <div class="col-12 col-md-6 col-lg-3 manage-item">
+                <a asp-action="@item">Manage @item</a>
+            </div>
+        }
     </div>
 </div>
