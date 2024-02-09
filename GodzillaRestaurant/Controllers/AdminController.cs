@@ -2,6 +2,7 @@
 using GodzillaRestaurant.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Configuration;
 
 namespace GodzillaRestaurant.Controllers
 {
@@ -13,7 +14,7 @@ namespace GodzillaRestaurant.Controllers
         private readonly IEventService _eventService;
         private readonly ITestimonialService _testimonialService;
         private readonly IGalleryService _galleryService;
-        private readonly string[] ManageItem = ["Chefs", "Specials", "Events", "Testimonials", "Gallery"];
+        private readonly ManageItem[] _manageItems = new ManageItem[5];
 
         public AdminController(IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testimonialService, IGalleryService galleryService)
         {
@@ -26,7 +27,12 @@ namespace GodzillaRestaurant.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.ManageItem = ManageItem;
+            _manageItems[0] = new ManageItem("Chefs", _chefService.GetAllChefs().Count(), "user");
+            _manageItems[1] = new ManageItem("Specials", _specialService.GetAllSpecials().Count(), "fire");
+            _manageItems[2] = new ManageItem("Events", _eventService.GetAllEvents().Count(), "calendar-days");
+            _manageItems[3] = new ManageItem("Testimonials", _testimonialService.GetAllTestimonials().Count(), "comment-dots");
+            _manageItems[4] = new ManageItem("Gallery", _galleryService.GetAllGallery().Count(), "images");
+            ViewBag.ManageItems = _manageItems;
             return View();
         }
 
