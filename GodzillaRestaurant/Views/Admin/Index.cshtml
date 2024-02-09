@@ -4,11 +4,20 @@
 
 <div id="admin-view">
     <partial name="Partial/_HeaderPartial.cshtml" />
-    <div class="d-flex flex-column">
-        <a asp-action="Chefs">Manage Chefs</a>
-        <a asp-action="Specials">Manage Specials</a>
-        <a asp-action="Events">Manage Events</a>
-        <a asp-action="Testimonials">Manage Testimonials</a>
-        <a asp-action="Gallery">Manage Gallery</a>
+    <div class="row mx-0">
+        @foreach (ManageItem item in ViewBag.ManageItems)
+        {
+            <div class="col-12 col-md-6 col-lg-3 manage-item">
+                <a asp-action="@item.Name" class="h-100 w-100">
+                    <div class="d-flex justify-content-center align-items-center w-100 manage-item-wrapper">
+                        <div class="d-flex flex-column align-items-center manage-item-info">
+                            <span class="manage-item-value fw-bold fs-3">@item.ItemCount</span>
+                            <span class="manage-item-label">@item.Name</span>
+                        </div>
+                        <i class="fa-solid fa-@item.Icon"></i>
+                    </div>
+                </a>
+            </div>
+        }
     </div>
 </div>
