@@ -1,0 +1,45 @@
+﻿@model IEnumerable<GodzillaRestaurant.Models.Food>
+@{
+    ViewData["Title"] = "Menu";
+}
+
+<partial name="Partial/_HeaderPartial.cshtml" />
+<div class="p-3">
+    <h3 class="text-center">Menu</h3>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Food Type</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var food in Model)
+            {
+                <tr>
+                    <td>@food.FoodId</td>
+                    <td>@food.FoodName</td>
+                    <td>@food.Description</td>
+                    <td>@food.FoodTypeId</td>
+                    <td>@food.Price</td>
+                    <td>
+                        @if (food.Image != null)
+                        {
+                            <img src="@food.Image" class="table-img" />
+                        }
+                    <td class="table-action-col">
+                        <a asp-action="EditFood" asp-route-id="@food.FoodId" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a asp-action="DeleteFood" asp-route-id="@food.FoodId" class="btn btn-danger btn-sm"><i class="fa-solid fa-xmark"></i></a>
+                    </td>
+                </tr>
+            }
+            <tr><td colspan="8"><strong>Total: @Model.Count()</strong></td></tr>
+        </tbody>
+    </table>
+    <button onclick="location.href='@Url.Action("CreateFood", "Admin")'" class="btn btn-primary">Create A Food</button>
+</div>

@@ -1,0 +1,17 @@
+﻿@model GodzillaRestaurant.Models.FoodType
+@{
+    ViewData["Title"] = "Create Food Type";
+}
+
+<div class="row justify-content-center p-3">
+    <div class="col-md-4 form-card">
+        <form asp-action="CreateFoodType" class="app-form" enctype="multipart/form-data">
+            <h3 class="text-center">Create A Food Type</h3>
+            <partial name="Partial/_FoodTypeFormPartial.cshtml" />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="FoodType" class="btn btn-secondary">Back to list</a>
+            </div>
+        </form>
+    </div>
+</div>

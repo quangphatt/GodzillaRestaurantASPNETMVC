@@ -3,6 +3,7 @@ using System;
 using GodzillaRestaurant.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GodzillaRestaurant.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240216123049_FoodUpdate")]
+    partial class FoodUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -423,7 +426,7 @@ namespace GodzillaRestaurant.Migrations
             modelBuilder.Entity("GodzillaRestaurant.Models.Food", b =>
                 {
                     b.HasOne("GodzillaRestaurant.Models.FoodType", "FoodType")
-                        .WithMany("Foods")
+                        .WithMany()
                         .HasForeignKey("FoodTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -480,11 +483,6 @@ namespace GodzillaRestaurant.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("GodzillaRestaurant.Models.FoodType", b =>
-                {
-                    b.Navigation("Foods");
                 });
 #pragma warning restore 612, 618
         }
