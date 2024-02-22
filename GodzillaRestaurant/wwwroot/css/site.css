@@ -195,6 +195,10 @@ h1, h2, h3, h4, h5, h6 {
         color: #cda45e;
     }
 
+    #topbar .languages li {
+        list-style: none;
+    }
+
         #topbar .languages ul a {
             color: white;
         }
@@ -1818,7 +1822,7 @@ section {
 }
 
 #admin-view {
-    margin-top: 30px;
+    margin-top: 42px;
 }
 
 .manage-item {

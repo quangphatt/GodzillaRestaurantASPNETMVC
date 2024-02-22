@@ -3,27 +3,24 @@
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 
-<ul class="navbar-nav">
-    @if (SignInManager.IsSignedIn(User))
-    {
+@if (SignInManager.IsSignedIn(User))
+{
+    <li>
+        <a href="/" title="Manage"><b>Hello @UserManager.GetUserName(User)</b></a>
+    </li>
+    <li>
         <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="nav-link text-dark" href="/" title="Manage"><b>Hello @UserManager.GetUserName(User)</b></a>
-                </li>
-                <li>
-                    <button type="submit" class="nav-link btn btn-link text-danger border-0 ms-3"><b>Log out</b></button>
-                </li>
-            </ul>
+            <button type="submit" class="nav-link btn btn-link text-danger border-0 ms-3"><b>Log out</b></button>
         </form>
-    }
-    else
-    {
-        <li class="nav-item">
-            <a class="nav-link text-dark" id="register" href="/Register">Register</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" id="login" href="/Login">Login</a>
-        </li>
-    }
-</ul>
+    </li>
+}
+else
+{
+    <li class="signIn">
+        <a id="register" href="/Register">Register</a>
+    </li>
+    <li>&nbsp;&nbsp;/&nbsp;&nbsp;</li>
+    <li class="signIn">
+        <a id="login" href="/Login">Login</a>
+    </li>
+}
