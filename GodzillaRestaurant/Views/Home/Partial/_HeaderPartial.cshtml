@@ -1,14 +1,28 @@
-﻿<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
-            <a class="navbar-brand text-uppercase" asp-area="" asp-controller="Home" asp-action="Index">Godzilla</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                <partial name="/Views/Home/Partial/_LoginPartial.cshtml" />
-            </div>
-        </div>
-    </nav>
+﻿<header id="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+        <h1 class="logo me-auto me-lg-0"><a href="Home">Godziila</a></h1>
+
+        <nav id="navbar" class="navbar order-last order-lg-0">
+            <ul>
+                <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                <li><a class="nav-link scrollto" href="#about">About</a></li>
+                <li><a class="nav-link scrollto" href="#menu">Menu</a></li>
+                <li><a class="nav-link scrollto" href="#specials">Specials</a></li>
+                <li><a class="nav-link scrollto" href="#events">Events</a></li>
+                <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
+                <li class="dropdown">
+                    <a href="#"><span>Order</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="#">Your Cart</a></li>
+                        <li><a href='#'>Your Order</a></li>
+                    </ul>
+                </li>
+                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <!-- .navbar -->
+        <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Book a table</a>
+        <a href="MenuOrder" class="book-a-table-btn scrollto d-none d-lg-flex">Order Online</a>
+    </div>
 </header>

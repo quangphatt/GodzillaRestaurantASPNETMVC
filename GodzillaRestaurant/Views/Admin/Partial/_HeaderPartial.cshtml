@@ -1,4 +1,9 @@
-﻿﻿<header>
+﻿﻿﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager﻿
+
+<header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container">
             <a class="navbar-brand text-uppercase" asp-area="" asp-controller="Admin" asp-action="Index">Godzilla Admin</a>
@@ -6,7 +11,30 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                <partial name="/Views/Home/Partial/_LoginPartial.cshtml" />
+                <ul class="navbar-nav">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a class="nav-link text-dark" href="/" title="Manage"><b>Hello @UserManager.GetUserName(User)</b></a>
+                                </li>
+                                <li>
+                                    <button type="submit" class="nav-link btn btn-link text-danger border-0 ms-3"><b>Log out</b></button>
+                                </li>
+                            </ul>
+                        </form>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="register" href="/Register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="login" href="/Login">Login</a>
+                        </li>
+                    }
+                </ul>
             </div>
         </div>
     </nav>
