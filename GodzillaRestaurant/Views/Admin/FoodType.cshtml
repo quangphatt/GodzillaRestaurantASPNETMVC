@@ -1,0 +1,34 @@
+﻿@model IEnumerable<GodzillaRestaurant.Models.FoodType>
+@{
+    ViewData["Title"] = "Food Type";
+}
+
+<partial name="Partial/_HeaderPartial.cshtml" />
+<div class="p-3">
+    <h3 class="text-center">List of Food Type</h3>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Sequence</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var foodType in Model)
+            {
+                <tr>
+                    <td>@foodType.FoodTypeId</td>
+                    <td>@foodType.FoodTypeName</td>
+                    <td>@foodType.Sequence</td>
+                    <td class="table-action-col">
+                        <a asp-action="DeleteFoodType" asp-route-id="@foodType.FoodTypeId" class="btn btn-danger btn-sm"><i class="fa-solid fa-xmark"></i></a>
+                    </td>
+                </tr>
+            }
+            <tr><td colspan="5"><strong>Total: @Model.Count()</strong></td></tr>
+        </tbody>
+    </table>
+    <button onclick="location.href='@Url.Action("CreateFoodType", "Admin")'" class="btn btn-primary">Create A Food Type</button>
+</div>

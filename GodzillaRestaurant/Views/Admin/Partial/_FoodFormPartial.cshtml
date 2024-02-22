@@ -1,0 +1,34 @@
+﻿@model GodzillaRestaurant.Models.Food
+
+<div>
+    <input type="hidden" asp-for="FoodId" />
+    <div class="form-floating mb-3">
+        <input asp-for="FoodName" class="form-control" required placeholder="Food Name" />
+        <label asp-for="FoodName" class="form-label">Name</label>
+        <span asp-validation-for="FoodName" class="text-danger small"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Description" class="form-control" required placeholder="Description" />
+        <label asp-for="Description" class="form-label">Description</label>
+        <span asp-validation-for="Description" class="text-danger small"></span>
+    </div>
+    <div class="form-floating mb-3">
+        @Html.DropDownList("FoodTypeId", null, "-- Select Food Type --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.FoodTypeId)
+        <label asp-for="FoodType" class="form-label">Food Type</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Price" class="form-control" required placeholder="Price" />
+        <label asp-for="Price" class="form-label">Price ($)</label>
+        <span asp-validation-for="Price" class="text-danger small"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Image" class="form-control" required placeholder="Image" />
+        <label asp-for="Image" class="form-label">Image Link</label>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

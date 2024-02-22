@@ -30,6 +30,8 @@ builder.Services.AddScoped<ISpecialService, SpecialDAL>();
 builder.Services.AddScoped<IEventService, EventDAL>();
 builder.Services.AddScoped<ITestimonialService, TestimonialDAL>();
 builder.Services.AddScoped<IGalleryService, GalleryDAL>();
+builder.Services.AddScoped<IFoodService, FoodDAL>();
+builder.Services.AddScoped<IFoodTypeService, FoodTypeDAL>();
 
 var app = builder.Build();
 

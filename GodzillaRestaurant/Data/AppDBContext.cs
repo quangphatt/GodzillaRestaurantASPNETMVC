@@ -21,4 +21,6 @@ public class AppDBContext : IdentityDbContext<AppUser>
     public virtual DbSet<Event> Event { get; set; }
     public virtual DbSet<Testimonial> Testimonial { get; set; }
     public virtual DbSet<GalleryItem> GalleryItem { get; set; }
+    public virtual DbSet<Food> Food { get; set; }
+    public virtual DbSet<FoodType> FoodType { get; set; }
 }

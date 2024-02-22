@@ -2,7 +2,7 @@
 using GodzillaRestaurant.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Configuration;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GodzillaRestaurant.Controllers
 {
@@ -14,15 +14,19 @@ namespace GodzillaRestaurant.Controllers
         private readonly IEventService _eventService;
         private readonly ITestimonialService _testimonialService;
         private readonly IGalleryService _galleryService;
-        private readonly ManageItem[] _manageItems = new ManageItem[5];
+        private readonly IFoodService _foodService;
+        private readonly IFoodTypeService _foodTypeService;
+        private readonly ManageItem[] _manageItems = new ManageItem[7];
 
-        public AdminController(IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testimonialService, IGalleryService galleryService)
+        public AdminController(IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testimonialService, IGalleryService galleryService, IFoodService foodService, IFoodTypeService foodTypeService)
         {
             _chefService = chefService;
             _specialService = specialService;
             _eventService = eventService;
             _testimonialService = testimonialService;
             _galleryService = galleryService;
+            _foodService = foodService;
+            _foodTypeService = foodTypeService;
         }
 
         public IActionResult Index()
@@ -32,6 +36,8 @@ namespace GodzillaRestaurant.Controllers
             _manageItems[2] = new ManageItem("Events", _eventService.GetAllEvents().Count(), "calendar-days");
             _manageItems[3] = new ManageItem("Testimonials", _testimonialService.GetAllTestimonials().Count(), "comment-dots");
             _manageItems[4] = new ManageItem("Gallery", _galleryService.GetAllGallery().Count(), "images");
+            _manageItems[5] = new ManageItem("Menu", _foodService.GetAllMenu().Count(), "burger");
+            _manageItems[6] = new ManageItem("FoodType", _foodTypeService.GetAllFoodType().Count(), "bowl-food");
             ViewBag.ManageItems = _manageItems;
             return View();
         }
@@ -280,6 +286,95 @@ namespace GodzillaRestaurant.Controllers
         {
             _galleryService.DeleteGalleryItem(galleryItem.GalleryItemId);
             return RedirectToAction("Gallery");
+        }
+
+        // Manage Food
+        public IActionResult Menu()
+        {
+            return View(_foodService.GetAllMenu());
+        }
+
+        [HttpGet]
+        public IActionResult CreateFood()
+        {
+            ViewBag.FoodTypeId = new SelectList(_foodTypeService.GetAllFoodType(), "FoodTypeId", "FoodTypeName", 0);
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateFood(Food food)
+        {
+            _foodService.AddFood(food);
+            return RedirectToAction("Menu");
+        }
+
+        [HttpGet]
+        public IActionResult EditFood(int id)
+        {
+            Food food = _foodService.GetFood(id);
+            if (food == null) return RedirectToAction("Menu");
+            else
+            {
+                ViewBag.FoodTypeId = new SelectList(_foodTypeService.GetAllFoodType(), "FoodTypeId", "FoodTypeName", food.FoodTypeId);
+                return View(food);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult EditFood(Food food)
+        {
+            ViewBag.FoodTypeId = new SelectList(_foodTypeService.GetAllFoodType(), "FoodTypeId", "FoodTypeName", food.FoodTypeId);
+            _foodService.UpdateFood(food);
+            return RedirectToAction("Menu");
+        }
+
+        [HttpGet]
+        public IActionResult DeleteFood(int id)
+        {
+            Food food = _foodService.GetFood(id);
+            if (food == null) return RedirectToAction("Menu");
+            else return View(food);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteFood(Food food)
+        {
+            _foodService.DeleteFood(food.FoodId);
+            return RedirectToAction("Menu");
+        }
+
+        // Manage Food Type
+        public IActionResult FoodType()
+        {
+            return View(_foodTypeService.GetAllFoodType());
+        }
+
+        [HttpGet]
+        public IActionResult CreateFoodType()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateFoodType(FoodType foodType)
+        {
+            _foodTypeService.AddFoodType(foodType);
+            return RedirectToAction("FoodType");
+        }
+
+        [HttpGet]
+        public IActionResult DeleteFoodType(int id)
+        {
+            FoodType foodType = _foodTypeService.GetFoodType(id);
+            if (foodType == null) return RedirectToAction("FoodType");
+            else return View(foodType);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteFoodType(FoodType foodType)
+        {
+            _foodTypeService.DeleteFoodType(foodType.FoodTypeId);
+            return RedirectToAction("FoodType");
         }
     }
 }
