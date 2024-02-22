@@ -14,7 +14,7 @@ namespace GodzillaRestaurant.DataAccessLayer
             _dbContext = dbContext;
         }
 
-        public IEnumerable<FoodType> GetAllFoodType() => _dbContext.FoodType.ToList();
+        public IEnumerable<FoodType> GetAllFoodType() => _dbContext.FoodType.OrderBy(f => f.Sequence).ToList();
 
         public FoodType GetFoodType(int id) => _dbContext.FoodType.Find(id);
 

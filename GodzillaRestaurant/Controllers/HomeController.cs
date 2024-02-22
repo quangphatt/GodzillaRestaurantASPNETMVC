@@ -17,8 +17,10 @@ namespace GodzillaRestaurant.Controllers
         private readonly IEventService _eventService;
         private readonly ITestimonialService _testimonialService;
         private readonly IGalleryService _galleryService;
+        private readonly IFoodService _foodService;
+        private readonly IFoodTypeService _foodTypeService;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testialService, IGalleryService galleryService)
+        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testialService, IGalleryService galleryService, IFoodService foodService, IFoodTypeService foodTypeService)
         {
             _logger = logger;
             this._userManager = userManager;
@@ -27,6 +29,8 @@ namespace GodzillaRestaurant.Controllers
             this._eventService = eventService;
             this._testimonialService = testialService;
             this._galleryService = galleryService;
+            this._foodService = foodService;
+            this._foodTypeService = foodTypeService;
         }
 
         public IActionResult Index()
@@ -40,6 +44,8 @@ namespace GodzillaRestaurant.Controllers
             ViewBag.Events = this._eventService.GetAllEvents();
             ViewBag.Testimonials = this._testimonialService.GetAllTestimonials();
             ViewBag.Gallery = this._galleryService.GetAllGallery();
+            ViewBag.Menu = this._foodService.GetAllMenu();
+            ViewBag.FoodType = this._foodTypeService.GetAllFoodType();
             return View();
         }
 

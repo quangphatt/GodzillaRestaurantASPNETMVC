@@ -2,6 +2,8 @@
 using GodzillaRestaurant.Models;
 using GodzillaRestaurant.Services;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol;
+using System.Collections.Generic;
 
 namespace GodzillaRestaurant.DataAccessLayer
 {
@@ -18,7 +20,7 @@ namespace GodzillaRestaurant.DataAccessLayer
         {
             try
             {
-                return _dbContext.Food.ToList();
+                return _dbContext.Food.OrderBy(f => f.FoodTypeId).ToList();
             }
             catch
             {
