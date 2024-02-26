@@ -27,7 +27,7 @@
                     <div class="col-lg-6 menu-item filter-@food.FoodTypeId">
                         <img src="@food.Image" class="menu-img" alt="@food.FoodName">
                         <div class="menu-content">
-                            <a href="#">@food.FoodName</a><span>$@food.Price</span>
+                            <a asp-action="Menu">@food.FoodName</a><span>$@food.Price</span>
                         </div>
                         <div class="menu-ingredients">@food.Description</div>
                     </div>

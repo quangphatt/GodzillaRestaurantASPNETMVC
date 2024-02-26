@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Menu";
+}
+
+<div>
+    <partial name="Partial/_TopBarPartial.cshtml" />
+    <partial name="Partial/_HeaderPartial.cshtml" />
+    <section id="menu" class="menu main-section section-bg">
+        <div class="container" data-aos="fade-up">
+            <button class="btn btn-primary mb-4" onclick="location.href='@Url.Action("Index", "Home")'">Back to Home</button>
+            <div class="section-title">
+                <h2>Menu</h2>
+                <p>Check Our Tasty Menu</p>
+            </div>
+
+            <div class="row" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <ul id="menu-flters">
+                        <li data-filter="*" class="filter-active">All</li>
+                        @{
+                            foreach (FoodType foodType in ViewBag.FoodType)
+                            {
+                                <li data-filter=".filter-@foodType.FoodTypeId">@foodType.FoodTypeName</li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+                @{
+                    foreach (Food food in ViewBag.Menu)
+                    {
+                        <div class="col-lg-6 menu-item filter-@food.FoodTypeId">
+                            <img src="@food.Image" class="menu-img" alt="@food.FoodName">
+                            <div class="menu-content">
+                                <a href="#">@food.FoodName</a><span>$@food.Price</span>
+                            </div>
+                            <div class="menu-ingredients">@food.Description</div>
+                            <div class="menu-amount d-flex align-items-center justify-content-end">
+                                <button class="btn btn-link btn-sm">
+                                    <i class="fa-solid fa-circle-minus fa-xl"></i>
+                                </button>
+                                <span>0</span>
+                                <button class="btn btn-link btn-sm">
+                                    <i class="fa-solid fa-circle-plus fa-xl"></i>
+                                </button>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <button class="btn btn-primary mt-5" onclick="location.href='@Url.Action("Cart", "Home")'">View Cart</button>
+        </div>
+    </section>
+</div>

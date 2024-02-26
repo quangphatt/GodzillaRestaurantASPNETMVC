@@ -7,7 +7,6 @@ using System.Diagnostics;
 
 namespace GodzillaRestaurant.Controllers
 {
-    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -46,6 +45,29 @@ namespace GodzillaRestaurant.Controllers
             ViewBag.Gallery = this._galleryService.GetAllGallery();
             ViewBag.Menu = this._foodService.GetAllMenu();
             ViewBag.FoodType = this._foodTypeService.GetAllFoodType();
+            return View();
+        }
+
+        [Authorize(Roles = "CLIENT")]
+        [Route("/Menu")]
+        public IActionResult Menu()
+        {
+            ViewBag.Menu = this._foodService.GetAllMenu();
+            ViewBag.FoodType = this._foodTypeService.GetAllFoodType();
+            return View();
+        }
+
+        [Authorize(Roles = "CLIENT")]
+        [Route("/Cart")]
+        public IActionResult Cart()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "CLIENT")]
+        [Route("/ViewOrder")]
+        public IActionResult ViewOrder()
+        {
             return View();
         }
 

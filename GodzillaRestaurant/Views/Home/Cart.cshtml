@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Cart";
+}
+
+<div>
+    <partial name="Partial/_TopBarPartial.cshtml" />
+    <partial name="Partial/_HeaderPartial.cshtml" />
+    <section id="menu" class="menu main-section section-bg">
+        <div class="container" data-aos="fade-up">
+            <button class="btn btn-primary mb-4" onclick="location.href='@Url.Action("Menu", "Home")'">Back to Menu</button>
+            <h5>Cart</h5>
+            <button class="btn btn-primary mt-5" onclick="location.href='@Url.Action("ViewOrder", "Home")'">View Order</button>
+        </div>
+    </section>
+</div>
