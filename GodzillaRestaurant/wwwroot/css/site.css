@@ -1855,6 +1855,6 @@ section {
     padding-top: 128px;
 }
 
-    .main-section button:focus {
+    .main-section button:focus, .main-section button:focus-visible {
         box-shadow: none;
     }

@@ -18,8 +18,9 @@ namespace GodzillaRestaurant.Controllers
         private readonly IGalleryService _galleryService;
         private readonly IFoodService _foodService;
         private readonly IFoodTypeService _foodTypeService;
+        private readonly ICartService _cartService;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testialService, IGalleryService galleryService, IFoodService foodService, IFoodTypeService foodTypeService)
+        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testialService, IGalleryService galleryService, IFoodService foodService, IFoodTypeService foodTypeService, ICartService cartService)
         {
             _logger = logger;
             this._userManager = userManager;
@@ -30,6 +31,7 @@ namespace GodzillaRestaurant.Controllers
             this._galleryService = galleryService;
             this._foodService = foodService;
             this._foodTypeService = foodTypeService;
+            this._cartService = cartService;
         }
 
         public IActionResult Index()
@@ -52,7 +54,7 @@ namespace GodzillaRestaurant.Controllers
         [Route("/Menu")]
         public IActionResult Menu()
         {
-            ViewBag.Menu = this._foodService.GetAllMenu();
+            ViewBag.MenuCart = this._cartService.GetMenuCart();
             ViewBag.FoodType = this._foodTypeService.GetAllFoodType();
             return View();
         }
@@ -62,6 +64,24 @@ namespace GodzillaRestaurant.Controllers
         public IActionResult Cart()
         {
             return View();
+        }
+
+        [Authorize(Roles = "CLIENT")]
+        [Route("/CartAdd")]
+        public IActionResult CartAdd(int foodId, int inMenu = 0)
+        {
+            _cartService.AddToCart(foodId);
+            if (inMenu == 1) return RedirectToAction("Menu");
+            return RedirectToAction("Cart");
+        }
+
+        [Authorize(Roles = "CLIENT")]
+        [Route("/CartRemove")]
+        public IActionResult CartRemove(int foodId, int inMenu = 0)
+        {
+            _cartService.RemoveFromCart(foodId);
+            if (inMenu == 1) return RedirectToAction("Menu");
+            return RedirectToAction("Cart");
         }
 
         [Authorize(Roles = "CLIENT")]

@@ -28,22 +28,22 @@
             </div>
             <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
                 @{
-                    foreach (Food food in ViewBag.Menu)
+                    foreach (CartItem cartItem in ViewBag.MenuCart)
                     {
-                        <div class="col-lg-6 menu-item filter-@food.FoodTypeId">
-                            <img src="@food.Image" class="menu-img" alt="@food.FoodName">
+                        <div class="col-lg-6 menu-item filter-@cartItem.Food.FoodTypeId">
+                            <img src="@cartItem.Food.Image" class="menu-img" alt="@cartItem.Food.FoodName">
                             <div class="menu-content">
-                                <a href="#">@food.FoodName</a><span>$@food.Price</span>
+                                <a href="#">@cartItem.Food.FoodName</a><span>$@cartItem.Food.Price</span>
                             </div>
-                            <div class="menu-ingredients">@food.Description</div>
+                            <div class="menu-ingredients">@cartItem.Food.Description</div>
                             <div class="menu-amount d-flex align-items-center justify-content-end">
-                                <button class="btn btn-link btn-sm">
+                                <a class="btn btn-link btn-sm" href="@(cartItem.Quantity==0 ? "" : "/CartRemove?foodId=@cartItem.FoodId&&inMenu=1")">
                                     <i class="fa-solid fa-circle-minus fa-xl"></i>
-                                </button>
-                                <span>0</span>
-                                <button class="btn btn-link btn-sm">
+                                </a>
+                                <span>@cartItem.Quantity</span>
+                                <a class="btn btn-link btn-sm" href="/CartAdd?foodId=@cartItem.FoodId&&inMenu=1">
                                     <i class="fa-solid fa-circle-plus fa-xl"></i>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     }

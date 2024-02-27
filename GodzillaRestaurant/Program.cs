@@ -40,6 +40,7 @@ builder.Services.AddScoped<ITestimonialService, TestimonialDAL>();
 builder.Services.AddScoped<IGalleryService, GalleryDAL>();
 builder.Services.AddScoped<IFoodService, FoodDAL>();
 builder.Services.AddScoped<IFoodTypeService, FoodTypeDAL>();
+builder.Services.AddScoped<ICartService, CartDAL>();
 
 var app = builder.Build();
 
