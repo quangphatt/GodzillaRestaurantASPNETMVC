@@ -23,30 +23,30 @@ namespace GodzillaRestaurant.Controllers
         public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testialService, IGalleryService galleryService, IFoodService foodService, IFoodTypeService foodTypeService, ICartService cartService)
         {
             _logger = logger;
-            this._userManager = userManager;
-            this._chefService = chefService;
-            this._specialService = specialService;
-            this._eventService = eventService;
-            this._testimonialService = testialService;
-            this._galleryService = galleryService;
-            this._foodService = foodService;
-            this._foodTypeService = foodTypeService;
-            this._cartService = cartService;
+            _userManager = userManager;
+            _chefService = chefService;
+            _specialService = specialService;
+            _eventService = eventService;
+            _testimonialService = testialService;
+            _galleryService = galleryService;
+            _foodService = foodService;
+            _foodTypeService = foodTypeService;
+            _cartService = cartService;
         }
 
         public IActionResult Index()
         {
-            if (this.User.IsInRole("ADMIN"))
+            if (User.IsInRole("ADMIN"))
             {
                 return Redirect("Admin");
             }
-            ViewBag.Chefs = this._chefService.GetAllChefs();
-            ViewBag.Specials = this._specialService.GetAllSpecials();
-            ViewBag.Events = this._eventService.GetAllEvents();
-            ViewBag.Testimonials = this._testimonialService.GetAllTestimonials();
-            ViewBag.Gallery = this._galleryService.GetAllGallery();
-            ViewBag.Menu = this._foodService.GetAllMenu();
-            ViewBag.FoodType = this._foodTypeService.GetAllFoodType();
+            ViewBag.Chefs = _chefService.GetAllChefs();
+            ViewBag.Specials = _specialService.GetAllSpecials();
+            ViewBag.Events = _eventService.GetAllEvents();
+            ViewBag.Testimonials = _testimonialService.GetAllTestimonials();
+            ViewBag.Gallery = _galleryService.GetAllGallery();
+            ViewBag.Menu = _foodService.GetAllMenu();
+            ViewBag.FoodType = _foodTypeService.GetAllFoodType();
             return View();
         }
 
@@ -54,8 +54,8 @@ namespace GodzillaRestaurant.Controllers
         [Route("/Menu")]
         public IActionResult Menu()
         {
-            ViewBag.MenuCart = this._cartService.GetMenuCart();
-            ViewBag.FoodType = this._foodTypeService.GetAllFoodType();
+            ViewBag.MenuCart = _cartService.GetMenuCart();
+            ViewBag.FoodType = _foodTypeService.GetAllFoodType();
             return View();
         }
 
@@ -63,6 +63,8 @@ namespace GodzillaRestaurant.Controllers
         [Route("/Cart")]
         public IActionResult Cart()
         {
+            ViewBag.Cart = _cartService.GetCartItems();
+            ViewBag.Total = _cartService.GetTotalCart();
             return View();
         }
 

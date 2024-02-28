@@ -31,6 +31,17 @@ namespace GodzillaRestaurant.DataAccessLayer
             return new List<CartItem>();
         }
 
+        public int GetTotalCart()
+        {
+            int total = 0;
+            var cart = GetCartItems();
+            foreach(CartItem item in cart)
+            {
+                total += item.Food.Price * item.Quantity;
+            }
+            return total;
+        }
+
         public CartItem FindCartItem(int foodId)
         {
             var cart = GetCartItems();
