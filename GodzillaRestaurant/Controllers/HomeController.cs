@@ -7,7 +7,6 @@ using System.Diagnostics;
 
 namespace GodzillaRestaurant.Controllers
 {
-    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -19,33 +18,78 @@ namespace GodzillaRestaurant.Controllers
         private readonly IGalleryService _galleryService;
         private readonly IFoodService _foodService;
         private readonly IFoodTypeService _foodTypeService;
+        private readonly ICartService _cartService;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testialService, IGalleryService galleryService, IFoodService foodService, IFoodTypeService foodTypeService)
+        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testialService, IGalleryService galleryService, IFoodService foodService, IFoodTypeService foodTypeService, ICartService cartService)
         {
             _logger = logger;
-            this._userManager = userManager;
-            this._chefService = chefService;
-            this._specialService = specialService;
-            this._eventService = eventService;
-            this._testimonialService = testialService;
-            this._galleryService = galleryService;
-            this._foodService = foodService;
-            this._foodTypeService = foodTypeService;
+            _userManager = userManager;
+            _chefService = chefService;
+            _specialService = specialService;
+            _eventService = eventService;
+            _testimonialService = testialService;
+            _galleryService = galleryService;
+            _foodService = foodService;
+            _foodTypeService = foodTypeService;
+            _cartService = cartService;
         }
 
         public IActionResult Index()
         {
-            if (this.User.IsInRole("ADMIN"))
+            if (User.IsInRole("ADMIN"))
             {
                 return Redirect("Admin");
             }
-            ViewBag.Chefs = this._chefService.GetAllChefs();
-            ViewBag.Specials = this._specialService.GetAllSpecials();
-            ViewBag.Events = this._eventService.GetAllEvents();
-            ViewBag.Testimonials = this._testimonialService.GetAllTestimonials();
-            ViewBag.Gallery = this._galleryService.GetAllGallery();
-            ViewBag.Menu = this._foodService.GetAllMenu();
-            ViewBag.FoodType = this._foodTypeService.GetAllFoodType();
+            ViewBag.Chefs = _chefService.GetAllChefs();
+            ViewBag.Specials = _specialService.GetAllSpecials();
+            ViewBag.Events = _eventService.GetAllEvents();
+            ViewBag.Testimonials = _testimonialService.GetAllTestimonials();
+            ViewBag.Gallery = _galleryService.GetAllGallery();
+            ViewBag.Menu = _foodService.GetAllMenu();
+            ViewBag.FoodType = _foodTypeService.GetAllFoodType();
+            return View();
+        }
+
+        [Authorize(Roles = "CLIENT")]
+        [Route("/Menu")]
+        public IActionResult Menu()
+        {
+            ViewBag.MenuCart = _cartService.GetMenuCart();
+            ViewBag.FoodType = _foodTypeService.GetAllFoodType();
+            return View();
+        }
+
+        [Authorize(Roles = "CLIENT")]
+        [Route("/Cart")]
+        public IActionResult Cart()
+        {
+            ViewBag.Cart = _cartService.GetCartItems();
+            ViewBag.Total = _cartService.GetTotalCart();
+            return View();
+        }
+
+        [Authorize(Roles = "CLIENT")]
+        [Route("/CartAdd")]
+        public IActionResult CartAdd(int foodId, int inMenu = 0)
+        {
+            _cartService.AddToCart(foodId);
+            if (inMenu == 1) return RedirectToAction("Menu");
+            return RedirectToAction("Cart");
+        }
+
+        [Authorize(Roles = "CLIENT")]
+        [Route("/CartRemove")]
+        public IActionResult CartRemove(int foodId, int inMenu = 0)
+        {
+            _cartService.RemoveFromCart(foodId);
+            if (inMenu == 1) return RedirectToAction("Menu");
+            return RedirectToAction("Cart");
+        }
+
+        [Authorize(Roles = "CLIENT")]
+        [Route("/ViewOrder")]
+        public IActionResult ViewOrder()
+        {
             return View();
         }
 

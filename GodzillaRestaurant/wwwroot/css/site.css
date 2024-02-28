@@ -199,20 +199,20 @@ h1, h2, h3, h4, h5, h6 {
         list-style: none;
     }
 
-        #topbar .languages ul a {
-            color: white;
-        }
+    #topbar .languages ul a {
+        color: white;
+    }
 
-        #topbar .languages ul li + li {
-            padding-left: 10px;
-        }
+    #topbar .languages ul li + li {
+        padding-left: 10px;
+    }
 
-            #topbar .languages ul li + li::before {
-                display: inline-block;
-                padding-right: 10px;
-                color: rgba(255, 255, 255, 0.5);
-                content: "/";
-            }
+        #topbar .languages ul li + li::before {
+            display: inline-block;
+            padding-right: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            content: "/";
+        }
 
 /*--------------------------------------------------------------
 # Header
@@ -1850,3 +1850,11 @@ section {
         .manage-item .manage-item-wrapper i {
             font-size: 50px;
         }
+
+.main-section {
+    padding-top: 128px;
+}
+
+    .main-section button:focus, .main-section button:focus-visible {
+        box-shadow: none;
+    }

@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Cart";
+}
+
+<div>
+    <partial name="Partial/_TopBarPartial.cshtml" />
+    <partial name="Partial/_HeaderPartial.cshtml" />
+    <section id="menu" class="menu main-section section-bg">
+        <div class="container" data-aos="fade-up">
+            <button class="btn btn-primary mb-4" onclick="location.href='@Url.Action("Menu", "Home")'">Back to Menu</button>
+            <div class="section-title pb-0">
+                <h2>Your Cart</h2>
+            </div>
+
+            @{
+                if (ViewBag.Cart.Count == 0)
+                {
+                    <div class="text-center">
+                        <span>There is nothing here!</span>
+                    </div>
+                }
+                else
+                {
+                    <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+                        @{
+                            foreach (CartItem cartItem in ViewBag.Cart)
+                            {
+                                <div class="col-lg-12 menu-item">
+                                    <img src="@cartItem.Food.Image" class="menu-img" alt="@cartItem.Food.FoodName">
+                                    <div class="menu-content">
+                                        <a href="/CartAdd?foodId=@cartItem.FoodId">@cartItem.Food.FoodName</a><span>$@(cartItem.Food.Price * cartItem.Quantity)</span>
+                                    </div>
+                                    <div class="menu-amount d-flex align-items-center justify-content-end">
+                                        <a class="btn btn-link btn-sm" href="/CartRemove?foodId=@cartItem.FoodId">
+                                            <i class="fa-solid fa-circle-minus fa-xl"></i>
+                                        </a>
+                                        <span>@cartItem.Quantity</span>
+                                        <a class="btn btn-link btn-sm" href="/CartAdd?foodId=@cartItem.FoodId">
+                                            <i class="fa-solid fa-circle-plus fa-xl"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+
+                    <div class="mt-3">
+                        <span>Sum: <b>$@ViewBag.Total</b></span>
+                    </div>
+                }
+            }
+            <button class="btn btn-primary mt-3" onclick="location.href='@Url.Action("ViewOrder", "Home")'">View Order</button>
+        </div>
+    </section>
+</div>
