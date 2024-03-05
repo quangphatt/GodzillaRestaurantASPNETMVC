@@ -23,4 +23,5 @@ public class AppDBContext : IdentityDbContext<AppUser>
     public virtual DbSet<GalleryItem> GalleryItem { get; set; }
     public virtual DbSet<Food> Food { get; set; }
     public virtual DbSet<FoodType> FoodType { get; set; }
+    public virtual DbSet<Order> Order { get; set; }
 }

@@ -41,6 +41,7 @@ builder.Services.AddScoped<IGalleryService, GalleryDAL>();
 builder.Services.AddScoped<IFoodService, FoodDAL>();
 builder.Services.AddScoped<IFoodTypeService, FoodTypeDAL>();
 builder.Services.AddScoped<ICartService, CartDAL>();
+builder.Services.AddScoped<IOrderService, OrderDAL>();
 
 var app = builder.Build();
 

@@ -6,9 +6,9 @@ namespace GodzillaRestaurant.Services
     {
         public void AddToCart(int foodId);
         public void RemoveFromCart(int foodId);
-        public List<CartItem> GetCartItems();
+        public List<OrderItem> GetCartItems();
         public int GetTotalCart();
-        public CartItem FindCartItem(int foodId);
-        public List<CartItem> GetMenuCart();
+        public OrderItem FindCartItem(int foodId);
+        public List<OrderItem> GetMenuCart();
     }
 }

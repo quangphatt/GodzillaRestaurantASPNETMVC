@@ -23,7 +23,7 @@
                 {
                     <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
                         @{
-                            foreach (CartItem cartItem in ViewBag.Cart)
+                            foreach (OrderItem cartItem in ViewBag.Cart)
                             {
                                 <div class="col-lg-12 menu-item">
                                     <img src="@cartItem.Food.Image" class="menu-img" alt="@cartItem.Food.FoodName">
@@ -45,11 +45,11 @@
                     </div>
 
                     <div class="mt-3">
-                        <span>Sum: <b>$@ViewBag.Total</b></span>
+                        <span>Total: <b>$@ViewBag.Total</b></span>
                     </div>
+                    <button class="btn btn-primary mt-3" onclick="location.href='@Url.Action("ViewOrder", "Home")'">View Order</button>
                 }
             }
-            <button class="btn btn-primary mt-3" onclick="location.href='@Url.Action("ViewOrder", "Home")'">View Order</button>
         </div>
     </section>
 </div>
