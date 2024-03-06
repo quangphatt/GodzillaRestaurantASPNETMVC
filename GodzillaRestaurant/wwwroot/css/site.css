@@ -729,14 +729,18 @@ section {
             margin: 4px 10px;
         }
 
-    .section-title p {
-        margin: 0;
-        margin: 0;
-        font-size: 36px;
-        font-weight: 700;
-        font-family: "Playfair Display", serif;
-        color: #cda45e;
-    }
+h5.section-title {
+    color: #ffffff;
+}
+
+.section-title p {
+    margin: 0;
+    margin: 0;
+    font-size: 36px;
+    font-weight: 700;
+    font-family: "Playfair Display", serif;
+    color: #cda45e;
+}
 
 /*--------------------------------------------------------------
 # About
@@ -976,8 +980,19 @@ section {
     margin-top: 50px;
 }
 
+    .menu .menu-item.menu-order-item {
+        margin-top: 20px;
+    }
+
 .menu .menu-img {
     width: 70px;
+    border-radius: 50%;
+    float: left;
+    border: 5px solid rgba(255, 255, 255, 0.2);
+}
+
+.menu .menu-order-img {
+    width: 50px;
     border-radius: 50%;
     float: left;
     border: 5px solid rgba(255, 255, 255, 0.2);
@@ -990,6 +1005,10 @@ section {
     justify-content: space-between;
     position: relative;
 }
+
+    .menu .menu-content.menu-order-content {
+        margin-left: 60px;
+    }
 
     .menu .menu-content::after {
         content: "......................................................................" "...................................................................." "....................................................................";
@@ -1031,6 +1050,10 @@ section {
     font-size: 14px;
     font-family: "Poppins", sans-serif;
     color: rgba(255, 255, 255, 0.5);
+}
+
+.menu .menu-order-amount {
+    margin-left: 60px;
 }
 
 /*--------------------------------------------------------------
@@ -1857,4 +1880,36 @@ section {
 
     .main-section button:focus, .main-section button:focus-visible {
         box-shadow: none;
+    }
+
+.order-form {
+    color: #ffffff;
+}
+
+/* Payment */
+.payment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.payment-item {
+    border: 1px solid #000;
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 12px;
+    color: #fff;
+}
+
+    .payment-item .payment-name {
+        color: black;
+        font-weight: 600;
+        margin-left: 10px;
+    }
+
+    .payment-item .payment-img {
+        width: 50px;
+        border-radius: 50%;
+        float: left;
+        border: 1px solid #cda45e;
     }

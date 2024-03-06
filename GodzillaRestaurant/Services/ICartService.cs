@@ -10,5 +10,6 @@ namespace GodzillaRestaurant.Services
         public int GetTotalCart();
         public OrderItem FindCartItem(int foodId);
         public List<OrderItem> GetMenuCart();
+        public void ClearCart();
     }
 }

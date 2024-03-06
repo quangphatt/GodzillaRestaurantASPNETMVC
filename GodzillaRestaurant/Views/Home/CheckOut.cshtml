@@ -1,13 +1,13 @@
-﻿@{
-    ViewData["Title"] = "View Order";
+﻿@model Order
+@{
+    ViewData["Title"] = "Check Out";
 }
 
 <div>
     <partial name="Partial/_TopBarPartial.cshtml" />
     <partial name="Partial/_HeaderPartial.cshtml" />
     <section id="menu" class="menu main-section section-bg">
-        <button class="btn btn-primary mt-5" onclick="location.href='@Url.Action("ViewOrder", "Home")'">View Order</button>
-        <h5>Checkout</h5>
+        <h5>Check Out</h5>
         <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Home")'">Return Home</button>
     </section>
 </div>
