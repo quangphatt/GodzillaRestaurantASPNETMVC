@@ -3,6 +3,7 @@ using System;
 using GodzillaRestaurant.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GodzillaRestaurant.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240308003638_PaymentCreated")]
+    partial class PaymentCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -250,16 +253,11 @@ namespace GodzillaRestaurant.Migrations
                     b.Property<int>("OrderStatus")
                         .HasColumnType("integer");
 
-                    b.Property<int>("PaymentId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("OrderId");
-
-                    b.HasIndex("PaymentId");
 
                     b.ToTable("Order");
                 });
@@ -513,17 +511,6 @@ namespace GodzillaRestaurant.Migrations
                         .IsRequired();
 
                     b.Navigation("FoodType");
-                });
-
-            modelBuilder.Entity("GodzillaRestaurant.Models.Order", b =>
-                {
-                    b.HasOne("GodzillaRestaurant.Models.Payment", "Payment")
-                        .WithMany()
-                        .HasForeignKey("PaymentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Payment");
                 });
 
             modelBuilder.Entity("GodzillaRestaurant.Models.OrderItem", b =>

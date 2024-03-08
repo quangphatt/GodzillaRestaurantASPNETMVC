@@ -16,9 +16,10 @@ namespace GodzillaRestaurant.Controllers
         private readonly IGalleryService _galleryService;
         private readonly IFoodService _foodService;
         private readonly IFoodTypeService _foodTypeService;
-        private readonly ManageItem[] _manageItems = new ManageItem[7];
+        private readonly IPaymentService _paymentService;
+        private readonly ManageItem[] _manageItems = new ManageItem[8];
 
-        public AdminController(IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testimonialService, IGalleryService galleryService, IFoodService foodService, IFoodTypeService foodTypeService)
+        public AdminController(IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testimonialService, IGalleryService galleryService, IFoodService foodService, IFoodTypeService foodTypeService, IPaymentService paymentService)
         {
             _chefService = chefService;
             _specialService = specialService;
@@ -27,6 +28,7 @@ namespace GodzillaRestaurant.Controllers
             _galleryService = galleryService;
             _foodService = foodService;
             _foodTypeService = foodTypeService;
+            _paymentService = paymentService;
         }
 
         public IActionResult Index()
@@ -38,6 +40,7 @@ namespace GodzillaRestaurant.Controllers
             _manageItems[4] = new ManageItem("Gallery", _galleryService.GetAllGallery().Count(), "images");
             _manageItems[5] = new ManageItem("Menu", _foodService.GetAllMenu().Count(), "burger");
             _manageItems[6] = new ManageItem("FoodType", _foodTypeService.GetAllFoodType().Count(), "bowl-food");
+            _manageItems[7] = new ManageItem("Payment", _paymentService.GetAllPayments().Count(), "credit-card");
             ViewBag.ManageItems = _manageItems;
             return View();
         }
@@ -375,6 +378,55 @@ namespace GodzillaRestaurant.Controllers
         {
             _foodTypeService.DeleteFoodType(foodType.FoodTypeId);
             return RedirectToAction("FoodType");
+        }
+
+        // Manage Payment
+        public IActionResult Payment()
+        {
+            return View(_paymentService.GetAllPayments());
+        }
+
+        [HttpGet]
+        public IActionResult CreatePayment()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreatePayment(Payment payment)
+        {
+            _paymentService.AddPayment(payment);
+            return RedirectToAction("Payment");
+        }
+
+        [HttpGet]
+        public IActionResult EditPayment(int id)
+        {
+            Payment payment = _paymentService.GetPayment(id);
+            if (payment == null) return RedirectToAction("Payment");
+            else return View(payment);
+        }
+
+        [HttpPost]
+        public IActionResult EditPayment(Payment payment)
+        {
+            _paymentService.UpdatePayment(payment);
+            return RedirectToAction("Payment");
+        }
+
+        [HttpGet]
+        public IActionResult DeletePayment(int id)
+        {
+            Payment payment = _paymentService.GetPayment(id);
+            if (payment == null) return RedirectToAction("Payment");
+            else return View(payment);
+        }
+
+        [HttpPost]
+        public IActionResult DeletePayment(Payment payment)
+        {
+            _paymentService.DeletePayment(payment.PaymentId);
+            return RedirectToAction("Payment");
         }
     }
 }

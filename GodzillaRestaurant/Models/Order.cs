@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GodzillaRestaurant.Models
 {
@@ -13,6 +14,8 @@ namespace GodzillaRestaurant.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
-        public string PaymentType { get; set; }
+        [ForeignKey("Payment")]
+        public int PaymentId { get; set; }
+        public virtual Payment Payment { get; set; }
     }
 }
