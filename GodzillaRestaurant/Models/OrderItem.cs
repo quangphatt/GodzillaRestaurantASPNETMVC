@@ -5,7 +5,7 @@ namespace GodzillaRestaurant.Models
     public class OrderItem
     {
         [Key]
-        public string OrderItemId { get; set; }
+        public int OrderItemId { get; set; }
         public int Quantity { get; set; }
         public int FoodId { get; set; }
         public Food Food { get; set; }

@@ -20,10 +20,9 @@
                             <div class="form-group">
                                 @{
                                     var _user = await UserManager.GetUserAsync(User);
-                                    var _name = _user.FullName;
                                 }
                                 <label>First and Last Name</label>
-                                <input value="@_name" class="form-control" asp-for="FullName" placeholder="First and Last Name" required="required">
+                                <input value="@_user.FullName" class="form-control" asp-for="FullName" placeholder="First and Last Name" required="required">
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -35,7 +34,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Phone</label>
-                                        <input value="" class="form-control" asp-for="Phone" placeholder="Phone" required="required">
+                                        <input value="@_user.PhoneNumber" class="form-control" asp-for="Phone" placeholder="Phone" required="required">
                                     </div>
                                 </div>
                             </div>

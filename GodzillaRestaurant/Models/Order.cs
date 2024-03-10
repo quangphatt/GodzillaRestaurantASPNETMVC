@@ -10,6 +10,7 @@ namespace GodzillaRestaurant.Models
         public DateTime CreatedDate { get; set; }
         public int OrderStatus { get; set; }
         public List<OrderItem> OrderItems { get; set; }
+        public string ListItem {  get; set; }
         public string FullName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
@@ -17,5 +18,6 @@ namespace GodzillaRestaurant.Models
         [ForeignKey("Payment")]
         public int PaymentId { get; set; }
         public virtual Payment Payment { get; set; }
+        public int Total {  get; set; }
     }
 }

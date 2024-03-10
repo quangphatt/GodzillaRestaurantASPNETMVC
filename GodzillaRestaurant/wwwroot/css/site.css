@@ -1907,9 +1907,9 @@ h5.section-title {
         margin-left: 10px;
     }
 
-    .payment-item .payment-img {
-        width: 50px;
-        border-radius: 50%;
-        float: left;
-        border: 1px solid #cda45e;
-    }
+.payment-img {
+    width: 50px;
+    border-radius: 50%;
+    float: left;
+    border: 1px solid #cda45e;
+}

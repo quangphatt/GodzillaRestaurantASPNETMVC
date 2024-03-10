@@ -2,6 +2,7 @@
 using GodzillaRestaurant.Models;
 using GodzillaRestaurant.Services;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace GodzillaRestaurant.DataAccessLayer
 {
@@ -52,10 +53,12 @@ namespace GodzillaRestaurant.DataAccessLayer
 
         public void CheckOut(Order order)
         {
-            order.OrderItems = _cartService.GetCartItems();
-            order.CreatedDate = DateTime.Now;
+            var cartItems = _cartService.GetCartItems();
+            order.ListItem = JsonConvert.SerializeObject(cartItems);
+            order.CreatedDate = DateTime.UtcNow;
             order.OrderStatus = 1;
             order.Payment = _paymentService.GetPayment(order.PaymentId);
+            order.Total = _cartService.GetTotalCart();
 
             AddOrder(order);
 

@@ -128,10 +128,5 @@ namespace GodzillaRestaurant.DataAccessLayer
 
             SaveCartSession(cart);
         }
-
-        public void CheckOut()
-        {
-
-        }
     }
 }

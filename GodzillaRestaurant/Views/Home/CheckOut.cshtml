@@ -2,12 +2,83 @@
 @{
     ViewData["Title"] = "Check Out";
 }
+@using Newtonsoft.Json.Linq;
 
 <div>
     <partial name="Partial/_TopBarPartial.cshtml" />
     <partial name="Partial/_HeaderPartial.cshtml" />
     <section id="menu" class="menu main-section section-bg">
-        <h5>Check Out</h5>
-        <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Home")'">Return Home</button>
+        <div class="container" data-aos="fade-up">
+            <div class="text-center mb-3">
+                <h4>Thanks for your Order</h4>
+                <span>We will contact you when we confirm this order</span>
+                <br />
+                <span>Have A Nice Day !!!</span>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <h5 class="section-title pb-0">Personal Details</h5>
+                    <div class="d-flex flex-column gap-1">
+                        <div class="form-group">
+                            <label>First and Last Name</label>
+                            <input value="@Model.FullName" class="form-control" asp-for="FullName" placeholder="First and Last Name" readonly="readonly">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email Address</label>
+                                    <input class="form-control" asp-for="Email" value="@Model.Email" placeholder="Email Address" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <input value="@Model.Phone" class="form-control" asp-for="Phone" placeholder="Phone" readonly="readonly">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Full Address</label>
+                            <input value="@Model.Address" class="form-control" asp-for="Address" placeholder="Full Address" readonly="readonly">
+                        </div>
+                        <h5 class="section-title pb-0 mt-3">Payment Method</h5>
+                        <div class="d-flex align-items-center gap-2">
+                            <img src="@Model.Payment.Image" class="payment-img" alt="@Model.Payment.PaymentName">
+                            <strong>@Model.Payment.PaymentName</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <h5 class="section-title pb-0">Order Summary</h5>
+                    <div>
+                        @{
+                            JArray jsonArray = JArray.Parse(Model.ListItem);
+                            var orderItems = jsonArray.ToObject<List<OrderItem>>();
+                            if (orderItems != null)
+                            {
+                                foreach (OrderItem orderItem in orderItems)
+                                {
+                                    <div class="col-lg-12 menu-item menu-order-item">
+                                        <img src="@orderItem.Food.Image" class="menu-order-img" alt="@orderItem.Food.FoodName">
+                                        <div class="menu-content menu-order-content">
+                                            <a>@orderItem.Food.FoodName</a><span>$@(orderItem.Food.Price * orderItem.Quantity)</span>
+                                        </div>
+                                        <div class="menu-order-amount d-flex align-items-center">
+                                            <span>x @orderItem.Quantity</span>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                    <div class="mt-3">
+                        <span>Total: <b>$@Model.Total</b></span>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary mt-3" onclick="location.href='@Url.Action("Index", "Home")'">Back to Home</button>
+        </div>
+
     </section>
 </div>
