@@ -19,8 +19,10 @@ namespace GodzillaRestaurant.Controllers
         private readonly IFoodService _foodService;
         private readonly IFoodTypeService _foodTypeService;
         private readonly ICartService _cartService;
+        private readonly IPaymentService _paymentService;
+        private readonly IOrderService _orderService;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testialService, IGalleryService galleryService, IFoodService foodService, IFoodTypeService foodTypeService, ICartService cartService)
+        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testialService, IGalleryService galleryService, IFoodService foodService, IFoodTypeService foodTypeService, ICartService cartService, IPaymentService paymentService, IOrderService orderService)
         {
             _logger = logger;
             _userManager = userManager;
@@ -32,6 +34,8 @@ namespace GodzillaRestaurant.Controllers
             _foodService = foodService;
             _foodTypeService = foodTypeService;
             _cartService = cartService;
+            _paymentService = paymentService;
+            _orderService = orderService;
         }
 
         public IActionResult Index()
@@ -90,7 +94,30 @@ namespace GodzillaRestaurant.Controllers
         [Route("/ViewOrder")]
         public IActionResult ViewOrder()
         {
+            ViewBag.Cart = _cartService.GetCartItems();
+            ViewBag.Total = _cartService.GetTotalCart();
+            ViewBag.Payments = _paymentService.GetAllPayments();
             return View();
+        }
+
+        [Authorize(Roles = "CLIENT")]
+        [Route("/CheckOut")]
+        [HttpGet]
+        public IActionResult CheckOut()
+        {
+            ViewBag.Cart = _cartService.GetCartItems();
+            ViewBag.Total = _cartService.GetTotalCart();
+            return View();
+        }
+
+        [Authorize(Roles = "CLIENT")]
+        [Route("/CheckOut")]
+        [HttpPost]
+        public IActionResult CheckOut(Order order)
+        {
+            _orderService.CheckOut(order);
+            var _order = _orderService.GetOrder(order.OrderId);
+            return View(_order);
         }
 
         public IActionResult Privacy()

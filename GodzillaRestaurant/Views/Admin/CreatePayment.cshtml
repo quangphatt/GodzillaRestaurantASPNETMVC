@@ -1,0 +1,17 @@
+﻿@model Payment
+@{
+    ViewData["Title"] = "Create Payment";
+}
+
+<div class="row justify-content-center p-3">
+    <div class="col-md-4 form-card">
+        <form asp-action="CreatePayment" class="app-form" enctype="multipart/form-data">
+            <h3 class="text-center">Create A Payment</h3>
+            <partial name="Partial/_PaymentFormPartial.cshtml" />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Payment" class="btn btn-secondary">Back to list</a>
+            </div>
+        </form>
+    </div>
+</div>

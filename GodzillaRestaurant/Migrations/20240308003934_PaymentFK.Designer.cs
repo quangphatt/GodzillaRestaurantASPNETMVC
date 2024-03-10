@@ -3,6 +3,7 @@ using System;
 using GodzillaRestaurant.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GodzillaRestaurant.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240308003934_PaymentFK")]
+    partial class PaymentFK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -247,10 +250,6 @@ namespace GodzillaRestaurant.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("ListItem")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<int>("OrderStatus")
                         .HasColumnType("integer");
 
@@ -261,9 +260,6 @@ namespace GodzillaRestaurant.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Total")
-                        .HasColumnType("integer");
-
                     b.HasKey("OrderId");
 
                     b.HasIndex("PaymentId");
@@ -273,11 +269,8 @@ namespace GodzillaRestaurant.Migrations
 
             modelBuilder.Entity("GodzillaRestaurant.Models.OrderItem", b =>
                 {
-                    b.Property<int>("OrderItemId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("OrderItemId"));
+                    b.Property<string>("OrderItemId")
+                        .HasColumnType("text");
 
                     b.Property<int>("FoodId")
                         .HasColumnType("integer");

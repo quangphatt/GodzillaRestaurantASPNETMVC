@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Payment>
+@{
+    ViewData["Title"] = "Payment Methods";
+}
+
+<partial name="Partial/_HeaderPartial.cshtml" />
+<div class="p-3 mt-5">
+    <h3 class="text-center">List of Payment Methods</h3>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var payment in Model)
+            {
+                <tr>
+                    <td>@payment.PaymentId</td>
+                    <td>@payment.PaymentName</td>
+                    <td>
+                        @if (payment.Image != null)
+                        {
+                            <img src="@payment.Image" class="table-img" />
+                        }
+                    </td>
+                    <td class="table-action-col">
+                        <a asp-action="EditPayment" asp-route-id="@payment.PaymentId" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a asp-action="DeletePayment" asp-route-id="@payment.PaymentId" class="btn btn-danger btn-sm"><i class="fa-solid fa-xmark"></i></a>
+                    </td>
+                </tr>
+            }
+            <tr><td colspan="4"><strong>Total: @Model.Count()</strong></td></tr>
+        </tbody>
+    </table>
+    <button onclick="location.href='@Url.Action("CreatePayment", "Admin")'" class="btn btn-primary">Create A Payment</button>
+</div>

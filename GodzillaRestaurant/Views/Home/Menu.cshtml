@@ -28,7 +28,7 @@
             </div>
             <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
                 @{
-                    foreach (CartItem cartItem in ViewBag.MenuCart)
+                    foreach (OrderItem cartItem in ViewBag.MenuCart)
                     {
                         <div class="col-lg-6 menu-item filter-@cartItem.Food.FoodTypeId">
                             <img src="@cartItem.Food.Image" class="menu-img" alt="@cartItem.Food.FoodName">

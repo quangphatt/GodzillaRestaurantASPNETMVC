@@ -20,44 +20,52 @@ namespace GodzillaRestaurant.DataAccessLayer
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public List<CartItem> GetCartItems()
+        public List<OrderItem> GetCartItems()
         {
             var session = _httpContextAccessor.HttpContext.Session;
             string jsoncart = session.GetString(CARTKEY);
             if (jsoncart != null)
             {
-                return JsonConvert.DeserializeObject<List<CartItem>>(jsoncart);
+                return JsonConvert.DeserializeObject<List<OrderItem>>(jsoncart);
             }
-            return new List<CartItem>();
+            return new List<OrderItem>();
         }
 
         public int GetTotalCart()
         {
             int total = 0;
             var cart = GetCartItems();
-            foreach(CartItem item in cart)
+            foreach (OrderItem item in cart)
             {
                 total += item.Food.Price * item.Quantity;
             }
             return total;
         }
 
-        public CartItem FindCartItem(int foodId)
+        public OrderItem FindCartItem(int foodId)
         {
             var cart = GetCartItems();
             var cartItem = cart.Find(c => c.FoodId == foodId);
             if (cartItem == null)
             {
                 Food food = _dbContext.Food.Find(foodId);
-                return new CartItem(0, foodId, food);
+                return CreateOrderItem(foodId, 0);
             }
             return cartItem;
         }
 
-        public List<CartItem> GetMenuCart()
+        public OrderItem CreateOrderItem(int foodId, int quantity)
+        {
+            Food food = _dbContext.Food.Find(foodId);
+            OrderItem orderItem = new OrderItem(foodId, quantity);
+            orderItem.Food = food;
+            return orderItem;
+        }
+
+        public List<OrderItem> GetMenuCart()
         {
             var menu = _dbContext.Food.ToList();
-            List<CartItem> cartItems = new List<CartItem>();
+            List<OrderItem> cartItems = new List<OrderItem>();
             for (var i = 0; i < menu.Count; i++)
             {
                 cartItems.Add(FindCartItem(menu[i].FoodId));
@@ -71,7 +79,7 @@ namespace GodzillaRestaurant.DataAccessLayer
             session.Remove(CARTKEY);
         }
 
-        public void SaveCartSession(List<CartItem> ls)
+        public void SaveCartSession(List<OrderItem> ls)
         {
             var session = _httpContextAccessor.HttpContext.Session;
             string jsoncart = JsonConvert.SerializeObject(ls);
@@ -93,7 +101,7 @@ namespace GodzillaRestaurant.DataAccessLayer
             else
             {
                 // No exist => Add
-                cart.Add(new CartItem(1, foodId, food));
+                cart.Add(CreateOrderItem(foodId, 1));
             }
 
             SaveCartSession(cart);
@@ -119,11 +127,6 @@ namespace GodzillaRestaurant.DataAccessLayer
             }
 
             SaveCartSession(cart);
-        }
-
-        public void CheckOut()
-        {
-
         }
     }
 }

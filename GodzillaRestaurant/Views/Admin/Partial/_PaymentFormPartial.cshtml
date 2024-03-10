@@ -1,0 +1,19 @@
+﻿@model Payment
+
+<div>
+    <input type="hidden" asp-for="PaymentId" />
+    <div class="form-floating mb-3">
+        <input asp-for="PaymentName" class="form-control" required placeholder="Payment Name" />
+        <label asp-for="PaymentName" class="form-label">Name</label>
+        <span asp-validation-for="PaymentName" class="text-danger small"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Image" class="form-control" required placeholder="Image" />
+        <label asp-for="Image" class="form-label">Image Link</label>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
