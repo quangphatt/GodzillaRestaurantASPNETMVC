@@ -46,13 +46,20 @@
                             <div class="payment-list">
                                 @foreach (Payment payment in ViewBag.Payments)
                                 {
-                                    <div class="payment-item d-flex align-items-center justify-content-between">
+                                    <button class="payment-item d-flex align-items-center justify-content-between" onclick="SelectPayment(this)">
                                         <div>
                                             <input type="radio" asp-for="PaymentId" value="@payment.PaymentId" required />
                                             <span class="payment-name">@payment.PaymentName</span>
                                         </div>
                                         <img src="@payment.Image" class="payment-img" alt="@payment.PaymentName">
-                                    </div>
+                                        <script type="text/javascript">
+                                            function SelectPayment(ele) {
+                                                event.preventDefault();
+                                                let paymentButton = ele.querySelector("input[type=radio]");
+                                                paymentButton.checked = true;
+                                            }
+                                        </script>
+                                    </button>
                                 }
                             </div>
                         </div>
@@ -63,15 +70,15 @@
                             @{
                                 foreach (OrderItem cartItem in ViewBag.Cart)
                                 {
-                                    <div class="col-lg-12 menu-item menu-order-item">
-                                        <img src="@cartItem.Food.Image" class="menu-order-img" alt="@cartItem.Food.FoodName">
-                                        <div class="menu-content menu-order-content">
-                                            <a>@cartItem.Food.FoodName</a><span>$@(cartItem.Food.Price * cartItem.Quantity)</span>
+                                        <div class="col-lg-12 menu-item menu-order-item">
+                                            <img src="@cartItem.Food.Image" class="menu-order-img" alt="@cartItem.Food.FoodName">
+                                            <div class="menu-content menu-order-content">
+                                                <a>@cartItem.Food.FoodName</a><span>$@(cartItem.Food.Price * cartItem.Quantity)</span>
+                                            </div>
+                                            <div class="menu-order-amount d-flex align-items-center">
+                                                <span>x @cartItem.Quantity</span>
+                                            </div>
                                         </div>
-                                        <div class="menu-order-amount d-flex align-items-center">
-                                            <span>x @cartItem.Quantity</span>
-                                        </div>
-                                    </div>
                                 }
                             }
                         </div>
