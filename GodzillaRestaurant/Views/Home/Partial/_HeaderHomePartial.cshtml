@@ -1,0 +1,39 @@
+﻿<div id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+        <div class="contact-info d-flex align-items-center">
+            <i class="bi bi-phone d-flex align-items-center"><span>(+84) 938760123</span></i>
+            <i class="bi bi-clock d-flex align-items-center ms-4"><span> Mon-Sat: 9AM - 23PM</span></i>
+        </div>
+        <div class="languages d-none d-md-flex align-items-center">
+            <partial name="/Views/Home/Partial/_LoginPartial.cshtml" />
+        </div>
+    </div>
+</div>
+<header id="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+        <h1 class="logo me-auto me-lg-0"><a href="Home">Godziila</a></h1>
+
+        <nav id="navbar" class="navbar order-last order-lg-0">
+            <ul>
+                <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                <li><a class="nav-link scrollto" href="#about">About</a></li>
+                <li><a class="nav-link scrollto" href="#menu">Menu</a></li>
+                <li><a class="nav-link scrollto" href="#specials">Specials</a></li>
+                <li><a class="nav-link scrollto" href="#events">Events</a></li>
+                <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
+                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                <li><a class="nav-link scrollto" href="#contact">Booking</a></li>
+                <li><a class="nav-link scrollto" href="#contact">Your Order</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <a href="Menu" class="book-a-table-btn scrollto d-none d-lg-flex">Order Now</a>
+        @if (ViewBag.Cart.Count > 0)
+        {
+            <a href="Cart" class="book-a-table-btn scrollto d-none d-lg-flex align-items-center gap-1">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-count">@ViewBag.Cart.Count</span>
+            </a>
+        }
+    </div>
+</header>

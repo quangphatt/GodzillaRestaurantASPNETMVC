@@ -6,7 +6,6 @@
 @inject UserManager<AppUser> UserManager
 
 <div>
-    <partial name="Partial/_TopBarPartial.cshtml" />
     <partial name="Partial/_HeaderPartial.cshtml" />
     <section id="menu" class="menu main-section section-bg">
         <div class="container" data-aos="fade-up">
@@ -70,15 +69,15 @@
                             @{
                                 foreach (OrderItem cartItem in ViewBag.Cart)
                                 {
-                                        <div class="col-lg-12 menu-item menu-order-item">
-                                            <img src="@cartItem.Food.Image" class="menu-order-img" alt="@cartItem.Food.FoodName">
-                                            <div class="menu-content menu-order-content">
-                                                <a>@cartItem.Food.FoodName</a><span>$@(cartItem.Food.Price * cartItem.Quantity)</span>
-                                            </div>
-                                            <div class="menu-order-amount d-flex align-items-center">
-                                                <span>x @cartItem.Quantity</span>
-                                            </div>
+                                    <div class="col-lg-12 menu-item menu-order-item">
+                                        <img src="@cartItem.Food.Image" class="menu-order-img" alt="@cartItem.Food.FoodName">
+                                        <div class="menu-content menu-order-content">
+                                            <a>@cartItem.Food.FoodName</a><span>$@(cartItem.Food.Price * cartItem.Quantity)</span>
                                         </div>
+                                        <div class="menu-order-amount d-flex align-items-center">
+                                            <span>x @cartItem.Quantity</span>
+                                        </div>
+                                    </div>
                                 }
                             }
                         </div>
