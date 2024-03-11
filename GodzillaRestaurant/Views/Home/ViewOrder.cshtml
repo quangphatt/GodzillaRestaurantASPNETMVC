@@ -6,7 +6,6 @@
 @inject UserManager<AppUser> UserManager
 
 <div>
-    <partial name="Partial/_TopBarPartial.cshtml" />
     <partial name="Partial/_HeaderPartial.cshtml" />
     <section id="menu" class="menu main-section section-bg">
         <div class="container" data-aos="fade-up">
@@ -46,13 +45,20 @@
                             <div class="payment-list">
                                 @foreach (Payment payment in ViewBag.Payments)
                                 {
-                                    <div class="payment-item d-flex align-items-center justify-content-between">
+                                    <button class="payment-item d-flex align-items-center justify-content-between" onclick="SelectPayment(this)">
                                         <div>
                                             <input type="radio" asp-for="PaymentId" value="@payment.PaymentId" required />
                                             <span class="payment-name">@payment.PaymentName</span>
                                         </div>
                                         <img src="@payment.Image" class="payment-img" alt="@payment.PaymentName">
-                                    </div>
+                                        <script type="text/javascript">
+                                            function SelectPayment(ele) {
+                                                event.preventDefault();
+                                                let paymentButton = ele.querySelector("input[type=radio]");
+                                                paymentButton.checked = true;
+                                            }
+                                        </script>
+                                    </button>
                                 }
                             </div>
                         </div>

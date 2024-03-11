@@ -9,8 +9,6 @@ namespace GodzillaRestaurant.Models
         public int OrderId { get; set; }
         public DateTime CreatedDate { get; set; }
         public int OrderStatus { get; set; }
-        public List<OrderItem> OrderItems { get; set; }
-        public string ListItem {  get; set; }
         public string FullName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }

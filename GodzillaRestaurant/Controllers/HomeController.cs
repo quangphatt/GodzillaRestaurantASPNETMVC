@@ -51,6 +51,7 @@ namespace GodzillaRestaurant.Controllers
             ViewBag.Gallery = _galleryService.GetAllGallery();
             ViewBag.Menu = _foodService.GetAllMenu();
             ViewBag.FoodType = _foodTypeService.GetAllFoodType();
+            ViewBag.Cart = _cartService.GetCartItems();
             return View();
         }
 
@@ -117,6 +118,7 @@ namespace GodzillaRestaurant.Controllers
         {
             _orderService.CheckOut(order);
             var _order = _orderService.GetOrder(order.OrderId);
+            ViewBag.ItemOrders = _orderService.GetOrderItemByOrder(order.OrderId);
             return View(_order);
         }
 
