@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "Check Out";
 }
-@using Newtonsoft.Json.Linq;
 
 <div>
     <partial name="Partial/_TopBarPartial.cshtml" />
@@ -52,24 +51,17 @@
                 <div class="col-6">
                     <h5 class="section-title pb-0">Order Summary</h5>
                     <div>
-                        @{
-                            JArray jsonArray = JArray.Parse(Model.ListItem);
-                            var orderItems = jsonArray.ToObject<List<OrderItem>>();
-                            if (orderItems != null)
-                            {
-                                foreach (OrderItem orderItem in orderItems)
-                                {
-                                    <div class="col-lg-12 menu-item menu-order-item">
-                                        <img src="@orderItem.Food.Image" class="menu-order-img" alt="@orderItem.Food.FoodName">
-                                        <div class="menu-content menu-order-content">
-                                            <a>@orderItem.Food.FoodName</a><span>$@(orderItem.Food.Price * orderItem.Quantity)</span>
-                                        </div>
-                                        <div class="menu-order-amount d-flex align-items-center">
-                                            <span>x @orderItem.Quantity</span>
-                                        </div>
-                                    </div>
-                                }
-                            }
+                        @foreach (OrderItem orderItem in ViewBag.ItemOrders)
+                        {
+                            <div class="col-lg-12 menu-item menu-order-item">
+                                <img src="@orderItem.Food.Image" class="menu-order-img" alt="@orderItem.Food.FoodName">
+                                <div class="menu-content menu-order-content">
+                                    <a>@orderItem.Food.FoodName</a><span>$@(orderItem.Food.Price * orderItem.Quantity)</span>
+                                </div>
+                                <div class="menu-order-amount d-flex align-items-center">
+                                    <span>x @orderItem.Quantity</span>
+                                </div>
+                            </div>
                         }
                     </div>
                     <div class="mt-3">

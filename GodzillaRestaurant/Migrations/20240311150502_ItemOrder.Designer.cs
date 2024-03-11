@@ -3,6 +3,7 @@ using System;
 using GodzillaRestaurant.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GodzillaRestaurant.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240311150502_ItemOrder")]
+    partial class ItemOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -224,6 +227,32 @@ namespace GodzillaRestaurant.Migrations
                     b.ToTable("GalleryItem");
                 });
 
+            modelBuilder.Entity("GodzillaRestaurant.Models.ItemOrder", b =>
+                {
+                    b.Property<int>("ItemOrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ItemOrderId"));
+
+                    b.Property<int>("FoodId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ItemOrderId");
+
+                    b.HasIndex("FoodId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("ItemOrder");
+                });
+
             modelBuilder.Entity("GodzillaRestaurant.Models.Order", b =>
                 {
                     b.Property<int>("OrderId")
@@ -244,6 +273,10 @@ namespace GodzillaRestaurant.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ListItem")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -519,6 +552,25 @@ namespace GodzillaRestaurant.Migrations
                         .IsRequired();
 
                     b.Navigation("FoodType");
+                });
+
+            modelBuilder.Entity("GodzillaRestaurant.Models.ItemOrder", b =>
+                {
+                    b.HasOne("GodzillaRestaurant.Models.Food", "Food")
+                        .WithMany()
+                        .HasForeignKey("FoodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GodzillaRestaurant.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Food");
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("GodzillaRestaurant.Models.Order", b =>

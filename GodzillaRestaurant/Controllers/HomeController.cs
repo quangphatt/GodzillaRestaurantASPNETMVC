@@ -117,6 +117,7 @@ namespace GodzillaRestaurant.Controllers
         {
             _orderService.CheckOut(order);
             var _order = _orderService.GetOrder(order.OrderId);
+            ViewBag.ItemOrders = _orderService.GetOrderItemByOrder(order.OrderId);
             return View(_order);
         }
 
