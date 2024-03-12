@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "All Orders";
+}
+
+<div>
+    <partial name="Partial/_HeaderPartial.cshtml" />
+    <section id="all-order" class="menu main-section section-bg-darker">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title">
+                <h2>All Order</h2>
+            </div>
+
+            <div class="row" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <ul id="menu-flters">
+                        <li data-filter="*" class="filter-active">All</li>
+                        <li data-filter=".type-1">Waiting to Confirm</li>
+                        <li data-filter=".type-2">Cooking</li>
+                        <li data-filter=".type-3">Finished</li>
+                        <li data-filter=".type-4">Denied</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row menu-container order-container" data-aos="fade-up" data-aos-delay="200">
+                @foreach (Order order in ViewBag.Orders)
+                {
+                    <a asp-action="OrderDetail" asp-route-id="@order.OrderId" class="col-lg-6 menu-item order-item-wrapper mt-4 type-@order.OrderStatus">
+                        <div class="order-item">
+                            <div class="order-info">
+                                <span>Order ID: <strong>@order.OrderId</strong></span>
+                                <span>Fullname: <strong>@order.FullName</strong></span>
+                                <span>Email: <strong>@order.Email</strong></span>
+                                <span>Phone: <strong>@order.Phone</strong></span>
+                                <span>Address: <strong>@order.Address</strong></span>
+                                <span>Order Date: <strong>@order.CreatedDate.ToString("dd-MM-yyyy HH:mm")</strong></span>
+                            </div>
+                            <div class="order-status order-status-@order.OrderStatus">
+                                @if (order.OrderStatus == 1)
+                                {
+                                    <div>
+                                        <i class="fa-solid fa-hourglass-start"></i>
+                                        <span>Waiting to Confirm</span>
+                                    </div>
+                                }
+                                else if (order.OrderStatus == 2)
+                                {
+                                    <i class="fa-solid fa-fire-burner"></i>
+                                    <span>Cooking</span>
+                                }
+                                else if (order.OrderStatus == 3)
+                                {
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <span>Finished</span>
+                                }
+                                else
+                                {
+                                    <i class="fa-solid fa-circle-xmark"></i>
+                                    <span>Denied</span>
+                                }
+                                <strong class="order-total">$@order.Total</strong>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+    </section>
+</div>

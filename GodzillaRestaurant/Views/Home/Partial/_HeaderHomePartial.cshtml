@@ -1,4 +1,8 @@
-﻿<div id="topbar" class="d-flex align-items-center fixed-top">
+﻿﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<AppUser> SignInManager
+
+<div id="topbar" class="d-flex align-items-center fixed-top">
     <div class="container d-flex justify-content-center justify-content-md-between">
         <div class="contact-info d-flex align-items-center">
             <i class="bi bi-phone d-flex align-items-center"><span>(+84) 938760123</span></i>
@@ -13,7 +17,7 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
         <h1 class="logo me-auto me-lg-0"><a href="Home">Godziila</a></h1>
 
-        <nav id="navbar" class="navbar order-last order-lg-0">
+        <nav id="navbar" class="navbar order-last order-lg-0 flex-grow-1">
             <ul>
                 <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
                 <li><a class="nav-link scrollto" href="#about">About</a></li>
@@ -22,8 +26,11 @@
                 <li><a class="nav-link scrollto" href="#events">Events</a></li>
                 <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                <li><a class="nav-link scrollto" href="#contact">Booking</a></li>
-                <li><a class="nav-link scrollto" href="#contact">Your Order</a></li>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <li><a class="nav-link scrollto" href="#booking">Booking</a></li>
+                    <li><a class="nav-link" asp-action="AllOrder">Your Order</a></li>
+                }
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>

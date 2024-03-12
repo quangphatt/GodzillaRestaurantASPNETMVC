@@ -1921,3 +1921,51 @@ h5.section-title {
     float: left;
     border: 1px solid #cda45e;
 }
+
+/* Order */
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding-block: 16px;
+    padding-inline: 20px;
+    background: #1a1814;
+}
+
+    .order-item .order-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .order-item .order-status {
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .order-item .order-total {
+        font-size: 20px;
+        text-align: right;
+    }
+
+    .order-item .order-status.order-status-1 {
+        color: #d27218;
+    }
+
+    .order-item .order-status.order-status-2 {
+        color: #182bd2;
+    }
+
+    .order-item .order-status.order-status-3 {
+        color: #18d237;
+    }
+
+    .order-item .order-status.order-status-4 {
+        color: #d21818;
+    }
+
+/* Section Background */
+.section-bg-darker {
+    background: #0c0b09;
+}
