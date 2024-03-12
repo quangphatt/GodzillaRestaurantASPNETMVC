@@ -68,7 +68,10 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary mt-3" onclick="location.href='@Url.Action("Index", "Home")'">Back to Home</button>
+            <div class="d-flex mt-3 gap-2">
+                <button class="btn btn-primary" onclick="location.href='@Url.Action("AllOrder", "Home")'">View All Orders</button>
+                <button class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Home")'">Back to Home</button>
+            </div>
         </div>
 
     </section>

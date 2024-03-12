@@ -122,6 +122,25 @@ namespace GodzillaRestaurant.Controllers
             return View(_order);
         }
 
+        [Authorize(Roles = "CLIENT")]
+        [Route("/AllOrder")]
+        [HttpGet]
+        public IActionResult AllOrder()
+        {
+            ViewBag.Orders = _orderService.GetAllOrdersOfUser();
+            return View();
+        }
+
+        [Authorize(Roles = "CLIENT")]
+        [Route("/OrderDetail")]
+        [HttpGet]
+        public IActionResult OrderDetail(int id)
+        {
+            Order order = _orderService.GetOrder(id);
+            if (order == null) return RedirectToAction("AllOrder");
+            return View(order);
+        }
+
         public IActionResult Privacy()
         {
             return View();
