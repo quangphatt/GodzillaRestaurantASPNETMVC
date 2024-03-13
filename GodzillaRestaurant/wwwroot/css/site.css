@@ -1003,7 +1003,7 @@ h5.section-title {
     width: 50px;
     border-radius: 50%;
     float: left;
-    border: 5px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .menu .menu-content {
