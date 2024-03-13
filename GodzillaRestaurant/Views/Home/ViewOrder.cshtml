@@ -7,7 +7,7 @@
 
 <div>
     <partial name="Partial/_HeaderPartial.cshtml" />
-    <section id="menu" class="menu main-section section-bg">
+    <section id="view-order" class="menu main-section section-bg">
         <div class="container" data-aos="fade-up">
             <button class="btn btn-primary mb-4" onclick="location.href='@Url.Action("Cart", "Home")'">Back to Cart</button>
             <form asp-action="CheckOut" class="order-form" enctype="multipart/form-data">

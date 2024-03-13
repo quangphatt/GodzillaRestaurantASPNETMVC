@@ -24,7 +24,7 @@ namespace GodzillaRestaurant.DataAccessLayer
 
         public IEnumerable<Order> GetAllOrders() => _dbContext.Order.ToList();
 
-        public IEnumerable<Order> GetAllOrdersOfUser() => _dbContext.Order.Where(o => o.UserId == _userService.GetUserId());
+        public IEnumerable<Order> GetAllOrdersOfUser() => _dbContext.Order.Where(o => o.UserId == _userService.GetUserId()).OrderByDescending(o => o.CreatedDate);
 
         public Order GetOrder(int id) => _dbContext.Order.Find(id);
 

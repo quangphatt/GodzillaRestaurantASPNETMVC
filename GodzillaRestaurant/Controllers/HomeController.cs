@@ -138,6 +138,8 @@ namespace GodzillaRestaurant.Controllers
         {
             Order order = _orderService.GetOrder(id);
             if (order == null) return RedirectToAction("AllOrder");
+            ViewBag.ItemOrders = _orderService.GetOrderItemByOrder(id);
+            order.Payment = _paymentService.GetPayment(order.PaymentId);
             return View(order);
         }
 
