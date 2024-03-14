@@ -7,20 +7,24 @@ namespace GodzillaRestaurant.DataAccessLayer
 {
     public class OrderDAL : IOrderService
     {
-        private AppDBContext _dbContext;
-        private ICartService _cartService;
-        private IPaymentService _paymentService;
-        private IFoodService _foodService;
+        private readonly AppDBContext _dbContext;
+        private readonly ICartService _cartService;
+        private readonly IPaymentService _paymentService;
+        private readonly IFoodService _foodService;
+        private readonly IUserService _userService;
 
-        public OrderDAL(AppDBContext dbContext, ICartService cartService, IPaymentService paymentService, IFoodService foodService)
+        public OrderDAL(AppDBContext dbContext, ICartService cartService, IPaymentService paymentService, IFoodService foodService, IUserService userService)
         {
             _dbContext = dbContext;
             _cartService = cartService;
             _paymentService = paymentService;
             _foodService = foodService;
+            _userService = userService;
         }
 
-        public List<Order> GetAllOrders() => _dbContext.Order.ToList();
+        public IEnumerable<Order> GetAllOrders() => _dbContext.Order.OrderByDescending(o => o.CreatedDate).ToList();
+
+        public IEnumerable<Order> GetAllOrdersOfUser() => _dbContext.Order.Where(o => o.UserId == _userService.GetUserId()).OrderByDescending(o => o.CreatedDate);
 
         public Order GetOrder(int id) => _dbContext.Order.Find(id);
 
@@ -94,6 +98,7 @@ namespace GodzillaRestaurant.DataAccessLayer
             order.OrderStatus = 1;
             order.Payment = _paymentService.GetPayment(order.PaymentId);
             order.Total = _cartService.GetTotalCart();
+            order.UserId = _userService.GetUserId();
 
             // Add Order
             AddOrder(order);
