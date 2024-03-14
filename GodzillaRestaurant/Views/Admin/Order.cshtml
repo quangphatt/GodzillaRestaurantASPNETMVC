@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Order>
+@{
+    ViewData["Title"] = "Order";
+}
+
+<partial name="Partial/_HeaderPartial.cshtml" />
+<div class="p-3 mt-5">
+    <h3 class="text-center">List of Orders</h3>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Fullname</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Order Time</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <a asp-action="OrderDetail" asp-route-id="@order.OrderId"></a>
+                    <td><a asp-action="OrderDetail" asp-route-id="@order.OrderId">@order.OrderId</a></td>
+                    <td><a asp-action="OrderDetail" asp-route-id="@order.OrderId">@order.FullName</a></td>
+                    <td><a asp-action="OrderDetail" asp-route-id="@order.OrderId">@order.Email</a></td>
+                    <td>@order.Phone</td>
+                    <td>@order.Address</td>
+                    <td>@order.CreatedDate.ToString("dd-MM-yyyy HH:mm")</td>
+                    <td><a asp-action="OrderDetail" asp-route-id="@order.OrderId">$@order.Total</a></td>
+                    <td class="table-action-col">
+                        @if (order.OrderStatus == 1)
+                        {
+                            <a class="btn btn-primary btn-sm btn-success" href="/Admin/ChangeOrderStatus?orderId=@order.OrderId&orderStatus=2">Accept</a>
+                            <a class="btn btn-primary btn-sm btn-danger" href="/Admin/ChangeOrderStatus?orderId=@order.OrderId&orderStatus=4">Deny</a>
+                        }
+                        else if (order.OrderStatus == 2)
+                        {
+                            <a class="btn btn-primary btn-sm btn-success" href="/Admin/ChangeOrderStatus?orderId=@order.OrderId&orderStatus=3">Finish</a>
+                        }
+                        else if (order.OrderStatus == 3)
+                        {
+                            <div class="text-success">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span>Finished</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-danger">
+                                <i class="fa-solid fa-circle-xmark"></i>
+                                <span>Denied</span>
+                            </div>
+                        }
+                    </td>
+                </tr>
+            }
+            <tr><td colspan="8"><strong>Total: @Model.Count()</strong></td></tr>
+        </tbody>
+    </table>
+</div>

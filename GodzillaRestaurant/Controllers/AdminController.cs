@@ -17,9 +17,10 @@ namespace GodzillaRestaurant.Controllers
         private readonly IFoodService _foodService;
         private readonly IFoodTypeService _foodTypeService;
         private readonly IPaymentService _paymentService;
-        private readonly ManageItem[] _manageItems = new ManageItem[8];
+        private readonly IOrderService _orderService;
+        private readonly ManageItem[] _manageItems = new ManageItem[9];
 
-        public AdminController(IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testimonialService, IGalleryService galleryService, IFoodService foodService, IFoodTypeService foodTypeService, IPaymentService paymentService)
+        public AdminController(IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testimonialService, IGalleryService galleryService, IFoodService foodService, IFoodTypeService foodTypeService, IPaymentService paymentService, IOrderService orderService)
         {
             _chefService = chefService;
             _specialService = specialService;
@@ -29,6 +30,7 @@ namespace GodzillaRestaurant.Controllers
             _foodService = foodService;
             _foodTypeService = foodTypeService;
             _paymentService = paymentService;
+            _orderService = orderService;
         }
 
         public IActionResult Index()
@@ -41,6 +43,7 @@ namespace GodzillaRestaurant.Controllers
             _manageItems[5] = new ManageItem("Menu", _foodService.GetAllMenu().Count(), "burger");
             _manageItems[6] = new ManageItem("FoodType", _foodTypeService.GetAllFoodType().Count(), "bowl-food");
             _manageItems[7] = new ManageItem("Payment", _paymentService.GetAllPayments().Count(), "credit-card");
+            _manageItems[8] = new ManageItem("Order", _orderService.GetAllOrders().Count(), "rectangle-list");
             ViewBag.ManageItems = _manageItems;
             return View();
         }
@@ -427,6 +430,27 @@ namespace GodzillaRestaurant.Controllers
         {
             _paymentService.DeletePayment(payment.PaymentId);
             return RedirectToAction("Payment");
+        }
+
+        // Manage Order
+        public IActionResult Order()
+        {
+            return View(_orderService.GetAllOrders());
+        }
+
+        public IActionResult OrderDetail(int id)
+        {
+            Order order = _orderService.GetOrder(id);
+            if (order == null) return RedirectToAction("AllOrder");
+            ViewBag.ItemOrders = _orderService.GetOrderItemByOrder(id);
+            order.Payment = _paymentService.GetPayment(order.PaymentId);
+            return View(order);
+        }
+
+        public IActionResult ChangeOrderStatus(int orderId, int orderStatus)
+        {
+            _orderService.UpdateOrderStatus(orderId, orderStatus);
+            return RedirectToAction("Order");
         }
     }
 }

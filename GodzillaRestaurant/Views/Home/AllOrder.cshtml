@@ -45,18 +45,24 @@
                                 }
                                 else if (order.OrderStatus == 2)
                                 {
-                                    <i class="fa-solid fa-fire-burner"></i>
-                                    <span>Cooking</span>
+                                    <div>
+                                        <i class="fa-solid fa-fire-burner"></i>
+                                        <span>Cooking</span>
+                                    </div>
                                 }
                                 else if (order.OrderStatus == 3)
                                 {
-                                    <i class="fa-solid fa-circle-check"></i>
-                                    <span>Finished</span>
+                                    <div>
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        <span>Finished</span>
+                                    </div>
                                 }
                                 else
                                 {
-                                    <i class="fa-solid fa-circle-xmark"></i>
-                                    <span>Denied</span>
+                                    <div>
+                                        <i class="fa-solid fa-circle-xmark"></i>
+                                        <span>Denied</span>
+                                    </div>
                                 }
                                 <strong class="order-total">$@order.Total</strong>
                             </div>
