@@ -103,16 +103,6 @@ namespace GodzillaRestaurant.Controllers
 
         [Authorize(Roles = "CLIENT")]
         [Route("/CheckOut")]
-        [HttpGet]
-        public IActionResult CheckOut()
-        {
-            ViewBag.Cart = _cartService.GetCartItems();
-            ViewBag.Total = _cartService.GetTotalCart();
-            return View();
-        }
-
-        [Authorize(Roles = "CLIENT")]
-        [Route("/CheckOut")]
         [HttpPost]
         public IActionResult CheckOut(Order order)
         {

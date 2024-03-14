@@ -1,0 +1,20 @@
+@{
+    ViewData["Title"] = "Check Out";
+}
+
+<partial name="../Home/Partial/_HeaderPartial.cshtml" />
+<section id="checkout-booking" class="checkout-booking main-section section-bg">
+  <div class="container" data-aos="fade-up">
+    <div class="text-center mb-3">
+      <h4>Thanks for your Booking</h4>
+      <span>We will contact you when we confirm this booking</span>
+      <br />
+      <span>Have A Nice Day !!!</span>
+    </div>
+    
+    <div class="d-flex justify-content-center mt-3 gap-2">
+      <button class="btn btn-primary" onclick="location.href='@Url.Action("AllBooking", "Booking")'">View All Booking</button>
+      <button class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Home")'">Back to Home</button>
+    </div>
+  </div>
+</section>

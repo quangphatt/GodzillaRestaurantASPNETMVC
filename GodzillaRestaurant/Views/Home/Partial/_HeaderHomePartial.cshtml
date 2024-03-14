@@ -28,7 +28,14 @@
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <li><a class="nav-link scrollto" href="#booking">Booking</a></li>
+                    @* <li><a class="nav-link scrollto" href="#book-a-table">Booking</a></li> *@
+                    <li class="dropdown">
+                        <a href="#"><span>Booking</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a asp-controller="Booking" asp-action="Index">Booking Now</a></li>
+                            <li><a asp-controller="Booking" asp-action="AllBooking">All Booking</a></li>
+                        </ul>
+                    </li>
                     <li><a class="nav-link" asp-action="AllOrder">Your Order</a></li>
                 }
             </ul>
