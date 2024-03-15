@@ -16,9 +16,9 @@ namespace GodzillaRestaurant.DataAccessLayer
             _userService = userService;
         }
 
-        public IEnumerable<Booking> GetAllBooking() => _dbContext.Booking.ToList();
+        public IEnumerable<Booking> GetAllBooking() => _dbContext.Booking.OrderByDescending(o => o.CreateDate).ToList();
 
-        public IEnumerable<Booking> GetAllBookingOfUser() => _dbContext.Booking.Where(o => o.UserId == _userService.GetUserId()).ToList();
+        public IEnumerable<Booking> GetAllBookingOfUser() => _dbContext.Booking.Where(o => o.UserId == _userService.GetUserId()).OrderByDescending(o => o.CreateDate).ToList();
 
         public Booking GetBooking(int id) => _dbContext.Booking.Find(id);
 
@@ -27,6 +27,7 @@ namespace GodzillaRestaurant.DataAccessLayer
             try
             {
                 booking.DateTime = DateTime.UtcNow;
+                booking.CreateDate = DateTime.UtcNow;
                 booking.UserId = _userService.GetUserId();
                 booking.BookingStatus = 1;
                 if (booking.Message == null)

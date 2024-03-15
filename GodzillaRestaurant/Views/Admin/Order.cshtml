@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Order>
 @{
-    ViewData["Title"] = "Order";
+    ViewData["Title"] = "Manage Order";
 }
 
 <partial name="Partial/_HeaderPartial.cshtml" />
@@ -22,15 +22,14 @@
         <tbody>
             @foreach (var order in Model)
             {
-                <tr>
-                    <a asp-action="OrderDetail" asp-route-id="@order.OrderId"></a>
-                    <td><a asp-action="OrderDetail" asp-route-id="@order.OrderId">@order.OrderId</a></td>
-                    <td><a asp-action="OrderDetail" asp-route-id="@order.OrderId">@order.FullName</a></td>
-                    <td><a asp-action="OrderDetail" asp-route-id="@order.OrderId">@order.Email</a></td>
+                <tr onclick="location.href='@Url.Action("OrderDetail", "Admin",new { id = order.OrderId })'">
+                    <td>@order.OrderId</td>
+                    <td>@order.FullName</td>
+                    <td>@order.Email</td>
                     <td>@order.Phone</td>
                     <td>@order.Address</td>
                     <td>@order.CreatedDate.ToString("dd-MM-yyyy HH:mm")</td>
-                    <td><a asp-action="OrderDetail" asp-route-id="@order.OrderId">$@order.Total</a></td>
+                    <td>$@order.Total</td>
                     <td class="table-action-col">
                         @if (order.OrderStatus == 1)
                         {
