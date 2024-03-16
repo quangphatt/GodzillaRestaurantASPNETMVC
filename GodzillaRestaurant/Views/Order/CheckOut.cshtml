@@ -4,7 +4,7 @@
 }
 
 <div>
-    <partial name="Partial/_HeaderPartial.cshtml" />
+    <partial name="../Home/Partial/_HeaderPartial.cshtml" />
     <section id="menu" class="menu main-section section-bg">
         <div class="container" data-aos="fade-up">
             <div class="text-center mb-3">
@@ -15,7 +15,7 @@
             </div>
             <partial name="Partial/_OrderPartial.cshtml" />
             <div class="d-flex mt-3 gap-2">
-                <button class="btn btn-primary" onclick="location.href='@Url.Action("AllOrder", "Home")'">View All Orders</button>
+                <button class="btn btn-primary" onclick="location.href='@Url.Action("AllOrder", "Order")'">View All Orders</button>
                 <button class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Home")'">Back to Home</button>
             </div>
         </div>
