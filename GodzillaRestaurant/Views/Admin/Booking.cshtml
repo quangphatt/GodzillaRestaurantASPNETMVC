@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Booking>
+@{
+    ViewData["Title"] = "Manage Booking";
+}
+
+<partial name="Partial/_HeaderPartial.cshtml" />
+<div class="p-3 mt-5">
+    <h3 class="text-center">List of Booking</h3>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Fullname</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Number of People</th>
+                <th>Create Date</th>
+                <th>Booking Time</th>
+                <th>Message</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Booking booking in Model)
+            {
+                <tr>
+                    <td>@booking.BookingId</td>
+                    <td>@booking.FullName</td>
+                    <td>@booking.Email</td>
+                    <td>@booking.Phone</td>
+                    <td>@booking.NPeople</td>
+                    <td>@DateTime.SpecifyKind(booking.CreateDate, DateTimeKind.Utc).ToLocalTime().ToString("dd-MM-yyyy HH:mm")</td>
+                    <td>@booking.DateTime.ToString("dd-MM-yyyy HH:mm")</td>
+                    <td>@booking.Message</td>
+                    <td class="table-action-col">
+                        @if (booking.BookingStatus == 1)
+                        {
+                            <a class="btn btn-primary btn-sm btn-success" href="/Admin/ChangeBookingStatus?bookingId=@booking.BookingId&bookingStatus=2">Accept</a>
+                            <a class="btn btn-primary btn-sm btn-danger" href="/Admin/ChangeBookingStatus?bookingId=@booking.BookingId&bookingStatus=3">Deny</a>
+                        }
+                        else if (booking.BookingStatus == 2)
+                        {
+                            <div class="text-success">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span>Finished</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-danger">
+                                <i class="fa-solid fa-circle-xmark"></i>
+                                <span>Denied</span>
+                            </div>
+                        }
+                    </td>
+                </tr>
+            }
+            <tr><td colspan="9"><strong>Total: @Model.Count()</strong></td></tr>
+        </tbody>
+    </table>
+</div>

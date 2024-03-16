@@ -4,12 +4,12 @@
 }
 
 <partial name="Partial/_HeaderPartial.cshtml" />
-<section id="order-detail" class="menu main-section section-bg pt-5 mt-3">
+<section id="order-detail" class="menu main-section section-bg pt-5 mt-5">
     <div class="container" data-aos="fade-up">
         <div class="section-title pb-0">
             <h2>Order @Model.OrderId</h2>
         </div>
-        <partial name="Partial/_OrderPartial.cshtml" />
+        <partial name="../Order/Partial/_OrderPartial.cshtml" />
         <button class="btn btn-primary mt-3" onclick="location.href='@Url.Action("Order", "Admin")'">Back to list</button>
     </div>
 </section>

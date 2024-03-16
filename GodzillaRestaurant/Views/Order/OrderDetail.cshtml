@@ -1,0 +1,17 @@
+﻿@model Order
+@{
+    ViewData["Title"] = "Order Detail";
+}
+
+<div>
+    <partial name="../Home/Partial/_HeaderPartial.cshtml" />
+    <section id="order-detail" class="menu main-section section-bg">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title pb-0">
+                <h2>Order @Model.OrderId</h2>
+            </div>
+            <partial name="Partial/_OrderPartial.cshtml" />
+            <button class="btn btn-primary mt-3" onclick="location.href='@Url.Action("AllOrder", "Order")'">View All Orders</button>
+        </div>
+    </section>
+</div>

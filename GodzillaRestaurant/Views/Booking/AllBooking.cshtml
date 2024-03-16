@@ -1,0 +1,72 @@
+@model IEnumerable<Booking>
+@{
+    ViewData["Title"] = "All Booking";
+}
+
+<div>
+    <partial name="../Home/Partial/_HeaderPartial.cshtml" />
+    <section id="all-booking" class="menu main-section section-bg-darker">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title pb-0">
+                <h2>All Booking</h2>
+            </div>
+
+            <div class="row" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <ul id="menu-flters">
+                        <li data-filter="*" class="filter-active">All</li>
+                        <li data-filter=".type-1">Waiting to Confirm</li>
+                        <li data-filter=".type-2">Finished</li>
+                        <li data-filter=".type-3">Denied</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row menu-container booking-container" data-aos="fade-up" data-aos-delay="200">
+                @foreach (Booking booking in Model)
+                {
+                    <div class="col-lg-6 menu-item booking-item-wrapper mt-4 type-@booking.BookingStatus">
+                        <div class="booking-item">
+                            <div class="booking-info">
+                                <span>Order ID: <strong>@booking.BookingId</strong></span>
+                                <span>Fullname: <strong>@booking.FullName</strong></span>
+                                <span>Email: <strong>@booking.Email</strong></span>
+                                <span>Phone: <strong>@booking.Phone</strong></span>
+                                <span>Number of People: <strong>@booking.NPeople</strong></span>
+                                @if (booking.Message != "")
+                                {
+                                    <span>Message: <strong>@booking.Message</strong></span>
+                                }
+                                <span>Create Date: <strong>@DateTime.SpecifyKind(booking.CreateDate, DateTimeKind.Utc).ToLocalTime().ToString("dd-MM-yyyy HH:mm")</strong></span>
+                                <span>Booking Date: <strong>@booking.DateTime.ToString("dd-MM-yyyy HH:mm")</strong></span>
+                            </div>
+                            <div class="booking-status booking-status-@booking.BookingStatus">
+                                @if (booking.BookingStatus == 1)
+                                {
+                                    <div>
+                                        <i class="fa-solid fa-hourglass-start"></i>
+                                        <span>Waiting to Confirm</span>
+                                    </div>
+                                }
+                                else if (booking.BookingStatus == 2)
+                                {
+                                    <div>
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        <span>Finished</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <i class="fa-solid fa-circle-xmark"></i>
+                                        <span>Denied</span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</div>

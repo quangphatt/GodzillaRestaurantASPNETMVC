@@ -15,7 +15,7 @@
 </div>
 <header id="header">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
-        <h1 class="logo me-auto me-lg-0"><a href="Home">Godziila</a></h1>
+        <h1 class="logo me-auto me-lg-0"><a href="Home">Godzilla</a></h1>
 
         <nav id="navbar" class="navbar order-last order-lg-0 flex-grow-1">
             <ul>
@@ -28,8 +28,14 @@
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <li><a class="nav-link scrollto" href="#booking">Booking</a></li>
-                    <li><a class="nav-link" asp-action="AllOrder">Your Order</a></li>
+                    <li class="dropdown">
+                        <a href="#"><span>Booking</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a asp-controller="Booking" asp-action="Index">Booking Now</a></li>
+                            <li><a asp-controller="Booking" asp-action="AllBooking">All Booking</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="nav-link" asp-controller="Order" asp-action="AllOrder">Your Order</a></li>
                 }
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
@@ -37,7 +43,7 @@
         <a href="Menu" class="book-a-table-btn scrollto d-none d-lg-flex">Order Now</a>
         @if (ViewBag.Cart.Count > 0)
         {
-            <a href="Cart" class="book-a-table-btn scrollto d-none d-lg-flex align-items-center gap-1">
+            <a asp-controller="Cart" asp-action="Index" class="book-a-table-btn scrollto d-none d-lg-flex align-items-center gap-1">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span class="cart-count">@ViewBag.Cart.Count</span>
             </a>

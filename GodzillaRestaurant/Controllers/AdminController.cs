@@ -18,9 +18,10 @@ namespace GodzillaRestaurant.Controllers
         private readonly IFoodTypeService _foodTypeService;
         private readonly IPaymentService _paymentService;
         private readonly IOrderService _orderService;
-        private readonly ManageItem[] _manageItems = new ManageItem[9];
+        private readonly IBookingService _bookingService;
+        private readonly ManageItem[] _manageItems = new ManageItem[10];
 
-        public AdminController(IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testimonialService, IGalleryService galleryService, IFoodService foodService, IFoodTypeService foodTypeService, IPaymentService paymentService, IOrderService orderService)
+        public AdminController(IChefService chefService, ISpecialService specialService, IEventService eventService, ITestimonialService testimonialService, IGalleryService galleryService, IFoodService foodService, IFoodTypeService foodTypeService, IPaymentService paymentService, IOrderService orderService, IBookingService bookingService)
         {
             _chefService = chefService;
             _specialService = specialService;
@@ -31,6 +32,7 @@ namespace GodzillaRestaurant.Controllers
             _foodTypeService = foodTypeService;
             _paymentService = paymentService;
             _orderService = orderService;
+            _bookingService = bookingService;
         }
 
         public IActionResult Index()
@@ -44,6 +46,7 @@ namespace GodzillaRestaurant.Controllers
             _manageItems[6] = new ManageItem("FoodType", _foodTypeService.GetAllFoodType().Count(), "bowl-food");
             _manageItems[7] = new ManageItem("Payment", _paymentService.GetAllPayments().Count(), "credit-card");
             _manageItems[8] = new ManageItem("Order", _orderService.GetAllOrders().Count(), "rectangle-list");
+            _manageItems[9] = new ManageItem("Booking", _bookingService.GetAllBooking().Count(), "calendar-minus");
             ViewBag.ManageItems = _manageItems;
             return View();
         }
@@ -451,6 +454,18 @@ namespace GodzillaRestaurant.Controllers
         {
             _orderService.UpdateOrderStatus(orderId, orderStatus);
             return RedirectToAction("Order");
+        }
+
+        // Manage Booking
+        public IActionResult Booking()
+        {
+            return View(_bookingService.GetAllBooking());
+        }
+
+        public IActionResult ChangeBookingStatus(int bookingId, int bookingStatus)
+        {
+            _bookingService.UpdateBookingStatus(bookingId, bookingStatus);
+            return RedirectToAction("Booking");
         }
     }
 }

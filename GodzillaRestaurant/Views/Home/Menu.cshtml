@@ -32,15 +32,15 @@
                         <div class="col-lg-6 menu-item filter-@cartItem.Food.FoodTypeId">
                             <img src="@cartItem.Food.Image" class="menu-img" alt="@cartItem.Food.FoodName">
                             <div class="menu-content">
-                                <a href="/CartAdd?foodId=@cartItem.FoodId&&inMenu=1">@cartItem.Food.FoodName</a><span>$@cartItem.Food.Price</span>
+                                <a href="/Cart/Add?foodId=@cartItem.FoodId&&inMenu=1">@cartItem.Food.FoodName</a><span>$@cartItem.Food.Price</span>
                             </div>
                             <div class="menu-ingredients">@cartItem.Food.Description</div>
                             <div class="menu-amount d-flex align-items-center justify-content-end">
-                                <a class="btn btn-link btn-sm" href="@(cartItem.Quantity==0 ? "" : "/CartRemove?foodId=" + cartItem.FoodId + "&&inMenu=1")">
+                                <a class="btn btn-link btn-sm" href="@(cartItem.Quantity==0 ? "" : "/Cart/Remove?foodId=" + cartItem.FoodId + "&&inMenu=1")">
                                     <i class="fa-solid fa-circle-minus fa-xl"></i>
                                 </a>
                                 <span>@cartItem.Quantity</span>
-                                <a class="btn btn-link btn-sm" href="/CartAdd?foodId=@cartItem.FoodId&&inMenu=1">
+                                <a class="btn btn-link btn-sm" href="/Cart/Add?foodId=@cartItem.FoodId&&inMenu=1">
                                     <i class="fa-solid fa-circle-plus fa-xl"></i>
                                 </a>
                             </div>
@@ -48,7 +48,7 @@
                     }
                 }
             </div>
-            <button class="btn btn-primary mt-5" onclick="location.href='@Url.Action("Cart", "Home")'">View Cart</button>
+            <button class="btn btn-primary mt-5" onclick="location.href='@Url.Action("Index", "Cart")'">View Cart</button>
         </div>
     </section>
 </div>

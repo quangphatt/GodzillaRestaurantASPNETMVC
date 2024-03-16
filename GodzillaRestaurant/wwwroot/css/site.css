@@ -263,7 +263,6 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
     font-size: 13px;
     font-weight: 500;
-    letter-spacing: 1px;
     transition: 0.3s;
 }
 
@@ -1327,6 +1326,10 @@ h5.section-title {
             background: #d3af71;
         }
 
+.book-a-table input[type=datetime-local]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
 /*--------------------------------------------------------------
 # Testimonials
 --------------------------------------------------------------*/
@@ -1962,6 +1965,45 @@ h5.section-title {
     }
 
     .order-item .order-status.order-status-4 {
+        color: #d21818;
+    }
+
+/* Booking */
+.booking-item {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding-block: 16px;
+    padding-inline: 20px;
+    background: #1a1814;
+}
+
+    .booking-item .booking-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .booking-item .booking-status {
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .booking-item .booking-total {
+        font-size: 20px;
+        text-align: right;
+    }
+
+    .booking-item .booking-status.booking-status-1 {
+        color: #d27218;
+    }
+
+    .booking-item .booking-status.booking-status-2 {
+        color: #18d237;
+    }
+
+    .booking-item .booking-status.booking-status-3 {
         color: #d21818;
     }
 

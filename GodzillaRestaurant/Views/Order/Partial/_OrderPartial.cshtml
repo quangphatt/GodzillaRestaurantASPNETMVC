@@ -1,0 +1,90 @@
+﻿@model Order
+
+<div class="my-2">
+    @if (Model.OrderStatus == 1)
+    {
+        <div class="text-warning">
+            <i class="fa-solid fa-hourglass-start"></i>
+            <span>Waiting to Confirm</span>
+        </div>
+    }
+    else if (Model.OrderStatus == 2)
+    {
+        <div>
+            <i class="fa-solid fa-fire-burner"></i>
+            <span>Cooking</span>
+        </div>
+    }
+    else if (Model.OrderStatus == 3)
+    {
+        <div class="text-success">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>Finished</span>
+        </div>
+    }
+    else
+    {
+        <div class="text-danger">
+            <i class="fa-solid fa-circle-xmark"></i>
+            <span>Denied</span>
+        </div>
+    }
+</div>
+<div class="row justify-content-center">
+    <div class="col-6">
+        <h5 class="section-title pb-0">Personal Details</h5>
+        <div class="d-flex flex-column gap-1">
+            <div class="form-group">
+                <label>First and Last Name</label>
+                <input value="@Model.FullName" class="form-control" asp-for="FullName" placeholder="First and Last Name" readonly="readonly">
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input class="form-control" asp-for="Email" value="@Model.Email" placeholder="Email Address" readonly="readonly">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input value="@Model.Phone" class="form-control" asp-for="Phone" placeholder="Phone" readonly="readonly">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Full Address</label>
+                <input value="@Model.Address" class="form-control" asp-for="Address" placeholder="Full Address" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label>Order Time</label>
+                <input value="@DateTime.SpecifyKind(Model.CreatedDate, DateTimeKind.Utc).ToLocalTime().ToString("dd-MM-yyyy HH:mm")" class="form-control" readonly="readonly">
+            </div>
+            <h5 class="section-title pb-0 mt-3">Payment Method</h5>
+            <div class="d-flex align-items-center gap-2">
+                <img src="@Model.Payment.Image" class="payment-img" alt="@Model.Payment.PaymentName">
+                <strong>@Model.Payment.PaymentName</strong>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <h5 class="section-title pb-0">Order Summary</h5>
+        <div>
+            @foreach (OrderItem orderItem in ViewBag.ItemOrders)
+            {
+                <div class="col-lg-12 menu-item menu-order-item">
+                    <img src="@orderItem.Food.Image" class="menu-order-img" alt="@orderItem.Food.FoodName">
+                    <div class="menu-content menu-order-content">
+                        <a>@orderItem.Food.FoodName</a><span>$@(orderItem.Food.Price * orderItem.Quantity)</span>
+                    </div>
+                    <div class="menu-order-amount d-flex align-items-center">
+                        <span>x @orderItem.Quantity</span>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="text-align-right mt-3">
+            <span>Total: <b>$@Model.Total</b></span>
+        </div>
+    </div>
+</div>
