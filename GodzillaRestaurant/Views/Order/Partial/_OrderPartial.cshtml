@@ -56,6 +56,10 @@
                 <label>Full Address</label>
                 <input value="@Model.Address" class="form-control" asp-for="Address" placeholder="Full Address" readonly="readonly">
             </div>
+            <div class="form-group">
+                <label>Order Time</label>
+                <input value="@DateTime.SpecifyKind(Model.CreatedDate, DateTimeKind.Utc).ToLocalTime().ToString("dd-MM-yyyy HH:mm")" class="form-control" readonly="readonly">
+            </div>
             <h5 class="section-title pb-0 mt-3">Payment Method</h5>
             <div class="d-flex align-items-center gap-2">
                 <img src="@Model.Payment.Image" class="payment-img" alt="@Model.Payment.PaymentName">

@@ -37,7 +37,7 @@
                                 {
                                     <span>Message: <strong>@booking.Message</strong></span>
                                 }
-                                <span>Create Date: <strong>@booking.CreateDate.ToString("dd-MM-yyyy HH:mm")</strong></span>
+                                <span>Create Date: <strong>@DateTime.SpecifyKind(booking.CreateDate, DateTimeKind.Utc).ToLocalTime().ToString("dd-MM-yyyy HH:mm")</strong></span>
                                 <span>Booking Date: <strong>@booking.DateTime.ToString("dd-MM-yyyy HH:mm")</strong></span>
                             </div>
                             <div class="booking-status booking-status-@booking.BookingStatus">

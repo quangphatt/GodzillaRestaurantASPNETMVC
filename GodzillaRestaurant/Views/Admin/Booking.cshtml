@@ -29,7 +29,7 @@
                     <td>@booking.Email</td>
                     <td>@booking.Phone</td>
                     <td>@booking.NPeople</td>
-                    <td>@booking.CreateDate.ToString("dd-MM-yyyy HH:mm")</td>
+                    <td>@DateTime.SpecifyKind(booking.CreateDate, DateTimeKind.Utc).ToLocalTime().ToString("dd-MM-yyyy HH:mm")</td>
                     <td>@booking.DateTime.ToString("dd-MM-yyyy HH:mm")</td>
                     <td>@booking.Message</td>
                     <td class="table-action-col">

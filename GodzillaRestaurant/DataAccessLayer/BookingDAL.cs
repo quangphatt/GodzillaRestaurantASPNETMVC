@@ -26,7 +26,7 @@ namespace GodzillaRestaurant.DataAccessLayer
         {
             try
             {
-                booking.DateTime = DateTime.UtcNow;
+                booking.DateTime = DateTime.SpecifyKind(booking.DateTime, DateTimeKind.Utc);
                 booking.CreateDate = DateTime.UtcNow;
                 booking.UserId = _userService.GetUserId();
                 booking.BookingStatus = 1;

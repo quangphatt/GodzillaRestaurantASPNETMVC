@@ -33,7 +33,7 @@
                                 <span>Email: <strong>@order.Email</strong></span>
                                 <span>Phone: <strong>@order.Phone</strong></span>
                                 <span>Address: <strong>@order.Address</strong></span>
-                                <span>Order Date: <strong>@order.CreatedDate.ToString("dd-MM-yyyy HH:mm")</strong></span>
+                                <span>Order Date: <strong>@DateTime.SpecifyKind(order.CreatedDate, DateTimeKind.Utc).ToLocalTime().ToString("dd-MM-yyyy HH:mm")</strong></span>
                             </div>
                             <div class="order-status order-status-@order.OrderStatus">
                                 @if (order.OrderStatus == 1)

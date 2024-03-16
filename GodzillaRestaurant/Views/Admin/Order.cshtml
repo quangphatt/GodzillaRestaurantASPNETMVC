@@ -28,7 +28,7 @@
                     <td>@order.Email</td>
                     <td>@order.Phone</td>
                     <td>@order.Address</td>
-                    <td>@order.CreatedDate.ToString("dd-MM-yyyy HH:mm")</td>
+                    <td>@DateTime.SpecifyKind(order.CreatedDate, DateTimeKind.Utc).ToLocalTime().ToString("dd-MM-yyyy HH:mm")</td>
                     <td>$@order.Total</td>
                     <td class="table-action-col">
                         @if (order.OrderStatus == 1)

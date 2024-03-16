@@ -1326,6 +1326,10 @@ h5.section-title {
             background: #d3af71;
         }
 
+.book-a-table input[type=datetime-local]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
 /*--------------------------------------------------------------
 # Testimonials
 --------------------------------------------------------------*/
