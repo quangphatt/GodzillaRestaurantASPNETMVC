@@ -3,8 +3,11 @@
     ViewData["Title"] = "Confirm email";
 }
 
-<h2>@ViewData["Title"]</h2>
-<div>
-    <p>@Model.StatusMessage</p>
-    <p>Back to <a href="/Login">Login Page</a></p>
-</div>
+<partial name="Partial/_HeaderPartial.cshtml" />
+<section id="menu" class="menu main-section section-bg">
+    <h2>@ViewData["Title"]</h2>
+    <div>
+        <p>@Model.StatusMessage</p>
+        <p>Back to <a href="/Login">Login Page</a></p>
+    </div>
+</section>
