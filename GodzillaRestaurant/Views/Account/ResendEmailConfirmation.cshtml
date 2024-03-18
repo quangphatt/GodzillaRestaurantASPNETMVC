@@ -3,21 +3,24 @@
     ViewData["Title"] = "Resend email confirmation";
 }
 
-<h1>@ViewData["Title"]</h1>
-<h3>Enter your email:</h3>
-<div class="row justify-content-center w-100 mb-5 auth-layout">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="All" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Email" class="form-control" aria-required="true" placeholder="name@example.com" />
-                <label asp-for="Email" class="form-label"></label>
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Resend</button>
-        </form>
+<partial name="Partial/_HeaderPartial.cshtml" />
+<section class="container p-0">
+    <h1>@ViewData["Title"]</h1>
+    <h3>Enter your email:</h3>
+    <div class="row justify-content-center w-100 mb-5 auth-layout">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="All" class="text-danger" role="alert"></div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Email" class="form-control" aria-required="true" placeholder="name@example.com" />
+                    <label asp-for="Email" class="form-label"></label>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <button type="submit" class="w-100 btn btn-lg btn-primary">Resend</button>
+            </form>
+        </div>
     </div>
-</div>
+</section>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
