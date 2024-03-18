@@ -13,9 +13,10 @@ namespace GodzillaRestaurant.Services
 
         public async Task SendMail(MailContent mailContent)
         {
-            var config = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
+            var emailAddress = Environment.GetEnvironmentVariable("EMAIL_ADDRESS");
+            var emailPassword = Environment.GetEnvironmentVariable("EMAIL_PASSWORD");
             var email = new MimeMessage();
-            email.Sender = MailboxAddress.Parse(config["EMAIL"]);
+            email.Sender = MailboxAddress.Parse(emailAddress);
             email.To.Add(MailboxAddress.Parse(mailContent.To));
             email.Subject = mailContent.Subject;
 
@@ -29,7 +30,7 @@ namespace GodzillaRestaurant.Services
             try
             {
                 smtp.Connect(MAIL_HOST, MAIL_PORT, SecureSocketOptions.StartTls);
-                smtp.Authenticate(config["EMAIL"], config["EMAIL_PASSWORD"]);
+                smtp.Authenticate(emailAddress, emailPassword);
                 await smtp.SendAsync(email);
             }
             catch (Exception ex)

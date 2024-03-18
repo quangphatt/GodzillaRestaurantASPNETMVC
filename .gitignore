@@ -1,3 +1,5 @@
 ﻿GodzillaRestaurant/bin
 GodzillaRestaurant/obj
 .vs
+GodzillaRestaurant/appsettings.json
+GodzillaRestaurant/appsettings.Development.json
