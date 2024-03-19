@@ -1,6 +1,6 @@
 # Godzilla Restaurant Website
 ## General Infomation
-**Godzilla Restaurant Website** is create by [ASP.NET MVC](https://dotnet.microsoft.com/en-us/apps/aspnet/mvc). The website was created as an online information page about restaurants, and also helps simplify ordering and booking tables online. In addition, the restaurant admin can manage information such as menu, online order/booking as well as other information displayed on the website.
+**Godzilla Restaurant Website** is created by [ASP.NET MVC](https://dotnet.microsoft.com/en-us/apps/aspnet/mvc). The website was created as an online information page about restaurants, and also helps simplify ordering and booking tables online. In addition, the restaurant admin can manage information such as menu, online order/booking as well as other information displayed on the website.
 Live Demo: https://godzillarestaurant.azurewebsites.net
 ## Technologies
 Project is created with:
