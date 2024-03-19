@@ -13,22 +13,23 @@ namespace GodzillaRestaurant.Services
 
         public async Task SendMail(MailContent mailContent)
         {
-            var emailAddress = Environment.GetEnvironmentVariable("EMAIL_ADDRESS");
-            var emailPassword = Environment.GetEnvironmentVariable("EMAIL_PASSWORD");
-            var email = new MimeMessage();
-            email.Sender = MailboxAddress.Parse(emailAddress);
-            email.To.Add(MailboxAddress.Parse(mailContent.To));
-            email.Subject = mailContent.Subject;
-
-            var builder = new BodyBuilder();
-            builder.HtmlBody = mailContent.Body;
-            email.Body = builder.ToMessageBody();
-
             // Use SmtpClient of MailKit
             using var smtp = new MailKit.Net.Smtp.SmtpClient();
 
             try
             {
+                var emailAddress = Environment.GetEnvironmentVariable("EMAIL_ADDRESS");
+                var emailPassword = Environment.GetEnvironmentVariable("EMAIL_PASSWORD");
+                var email = new MimeMessage();
+                email.Sender = MailboxAddress.Parse(emailAddress);
+                email.To.Add(MailboxAddress.Parse(mailContent.To));
+                email.Subject = mailContent.Subject;
+
+                var builder = new BodyBuilder();
+                builder.HtmlBody = mailContent.Body;
+                email.Body = builder.ToMessageBody();
+
+                // Send Mail
                 smtp.Connect(MAIL_HOST, MAIL_PORT, SecureSocketOptions.StartTls);
                 smtp.Authenticate(emailAddress, emailPassword);
                 await smtp.SendAsync(email);
