@@ -25,8 +25,14 @@ namespace GodzillaRestaurant.Services
                 email.To.Add(MailboxAddress.Parse(mailContent.To));
                 email.Subject = mailContent.Subject;
 
-                var builder = new BodyBuilder();
-                builder.HtmlBody = mailContent.Body;
+                string filePath = Directory.GetCurrentDirectory() + "\\wwwroot\\mail\\mail_template.html";
+                string emailTemplateText = File.ReadAllText(filePath);
+                emailTemplateText = string.Format(emailTemplateText, mailContent.Body);
+
+                var builder = new BodyBuilder
+                {
+                    HtmlBody = emailTemplateText
+                };
                 email.Body = builder.ToMessageBody();
 
                 // Send Mail
