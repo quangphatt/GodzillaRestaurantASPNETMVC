@@ -106,8 +106,8 @@ namespace GodzillaRestaurant.Controllers
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Action(nameof(ConfirmEmail), "Account", new { userId = user.Id, code = code }, Request.Scheme);
-                    await _mailService.SendMail(new MailContent(model.Email, "Confirm your email",
+                    var callbackUrl = Url.Action(nameof(ConfirmEmail), "Account", new { userId = user.Id, code }, Request.Scheme);
+                    await _mailService.SendMail(new MailContent(model.Email, "Confirm Your Email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>."));
 
                     return RedirectToAction("RegisterConfirmation", new { email = model.Email, returnUrl = returnUrl });
@@ -271,7 +271,7 @@ namespace GodzillaRestaurant.Controllers
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
             var callbackUrl = Url.Action(nameof(ConfirmEmail), "Account", new { userId = user.Id, code = code }, Request.Scheme);
-            await _mailService.SendMail(new MailContent(model.Email, "Confirm your email",
+            await _mailService.SendMail(new MailContent(model.Email, "Confirm Your Email",
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>."));
 
             ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
